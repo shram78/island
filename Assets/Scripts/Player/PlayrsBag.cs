@@ -10,7 +10,6 @@ public class PlayrsBag : MonoBehaviour
 
     [SerializeField] private GameObject _movePathPointOne;
     [SerializeField] private GameObject _movePathPointTwo;
-    [SerializeField] private GameObject _movePathPointThree;
 
     private int _currentStackPoint = 0;
     private List<CollectableItem> _collectableItems;
