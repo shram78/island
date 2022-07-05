@@ -12,11 +12,11 @@ public class SimplePlantGrowing : MonoBehaviour {
 	private Transform growRoot;
 
 	void Awake() {
-		growRoot = transform.FindChild ("GrowRoot"); //The GrowRoot Empty object is the root which will contains the instantiated grown plant levels
+		growRoot = transform.Find ("GrowRoot"); //The GrowRoot Empty object is the root which will contains the instantiated grown plant levels
 	}
 	// Use this for initialization
 	void Start () {
-		growRoot = transform.FindChild ("GrowRoot");
+		growRoot = transform.Find ("GrowRoot");
 	}
 	
 	// Update is called once per frame
