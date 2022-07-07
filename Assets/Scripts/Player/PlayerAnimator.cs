@@ -8,6 +8,9 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private FloatingJoystick _joystick;
 
     private const string Speed = "Speed";
+    private const string ShakeTree = "ShakeTree";
+    private const string StopShakeTree = "StopShakeTree";
+
     private Animator _animator;
 
     private void Start()
@@ -36,5 +39,15 @@ public class PlayerAnimator : MonoBehaviour
     private void PlayIdleAnimation()
     {
         _animator.SetFloat(Speed, 0);
+    }
+    
+    public void ShakingTree()
+    {
+        _animator.SetTrigger(ShakeTree);
+    }
+
+    public void StopingShakeTree()
+    {
+        _animator.SetTrigger(StopShakeTree);
     }
 }
