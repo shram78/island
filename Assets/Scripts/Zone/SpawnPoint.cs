@@ -8,7 +8,7 @@ public class SpawnPoint : MonoBehaviour
 
     public bool IsClose => _isClose;
 
-    public void ChangedResultPlace(bool result)
+    public void ChangeFreeStatus(bool result)
     {
         _isClose = result;
     }
