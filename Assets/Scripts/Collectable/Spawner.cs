@@ -6,16 +6,22 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private CollectableItem _collectableItem;
     [SerializeField] private SpawnPoint[] _spawnPoints;
-    [SerializeField] private float _delaySpawn;
+    [SerializeField] private ShakeTreeZone _shakeTreeZone;
 
     private int _numberPrefab = 0;
     private CollectableItem _currentPrefab;
     private float _currentTime;
     private int _numberClosedPoints = 0;
+    private float _delaySpawn = 7;
+
+    private void OnEnable()
+    {
+        _shakeTreeZone.Enter += OnSetNewSppeed;
+    }
 
     private void Update()
     {
-      //  if (_numberPrefab > 0)
+        //  if (_numberPrefab > 0)
         {
             if (_numberClosedPoints < _spawnPoints.Length)
             {
@@ -31,6 +37,12 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        _shakeTreeZone.Enter -= OnSetNewSppeed;
+
+    }
+
     private void SpawnPrefab()
     {
         if (_numberClosedPoints < _spawnPoints.Length)
@@ -40,11 +52,11 @@ public class Spawner : MonoBehaviour
                 if (_spawnPoints[i].IsClose == false)
                 {
                     _currentPrefab = Instantiate(_collectableItem, _spawnPoints[i].transform.position, Quaternion.identity);
-                    
+
                     _currentPrefab.MoveDown();
 
                     _spawnPoints[i].ChangeFreeStatus(true);
-                    
+
                     _currentPrefab.InitSpawnPoint(_spawnPoints[i]);
 
                     _currentPrefab.Selected += OnSelected;
@@ -70,4 +82,14 @@ public class Spawner : MonoBehaviour
 
         collectableItem.Selected -= OnSelected;
     }
+
+    public void OnSetNewSppeed(bool isEnter)
+    {
+        if (isEnter)
+            _delaySpawn = 1;
+        if (isEnter == false)
+            _delaySpawn = 7;
+    }
+
+
 }

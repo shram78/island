@@ -8,9 +8,7 @@ public class ShakeTreeZone : MonoBehaviour
     [SerializeField] private PlayerAnimator _playerAnimator;
     [SerializeField] private PalmAnimator _palmAnimator;
 
-    public UnityAction Enter;
-    public UnityAction Exit;
-
+    public UnityAction<bool> Enter;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,7 +17,7 @@ public class ShakeTreeZone : MonoBehaviour
             _playerAnimator.ShakingTree();
             _palmAnimator.ShakingTree();
 
-            Enter?.Invoke();//
+            Enter?.Invoke(true);
         }
     }
 
@@ -30,7 +28,7 @@ public class ShakeTreeZone : MonoBehaviour
             _playerAnimator.StopingShakeTree();
             _palmAnimator.StopingShakeTree();
 
-            Exit?.Invoke();//
+            Enter?.Invoke(false);
         }
     }
 

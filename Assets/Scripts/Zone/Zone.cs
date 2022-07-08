@@ -8,6 +8,8 @@ public class Zone : MonoBehaviour
     [SerializeField] private TMP_Text _number;
     [SerializeField] private int _countElement;
 
+    [SerializeField] private GameObject _tempPrefab;
+
     private int _currentNumber = 0;
     private int _maxElement;
 
@@ -47,7 +49,8 @@ public class Zone : MonoBehaviour
         _currentNumber++;
 
         if (_countElement == 0)
-            gameObject.SetActive(false);
+            // gameObject.SetActive(false);
+            _tempPrefab.gameObject.SetActive(true);
 
         if (_number != null)
             ChangedCounter();
