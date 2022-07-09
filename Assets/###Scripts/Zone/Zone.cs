@@ -1,9 +1,10 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 public class Zone : MonoBehaviour
 {
-    [SerializeField] private bool _isRed;
+    [SerializeField] private bool _isBranch;
     [SerializeField] private Transform _pointToMove;
     [SerializeField] private TMP_Text _number;
     [SerializeField] private int _countElement;
@@ -12,6 +13,8 @@ public class Zone : MonoBehaviour
 
     private int _currentNumber = 0;
     private int _maxElement;
+
+    public UnityAction Opened;
 
     private void Start()
     {
@@ -26,7 +29,7 @@ public class Zone : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out PlayrsBag bag))
         {
-            if (_isRed)
+            if (_isBranch)
                 bag.DropRedELement(_countElement, _pointToMove, this);
         }
     }
@@ -50,7 +53,8 @@ public class Zone : MonoBehaviour
 
         if (_countElement == 0)
             // gameObject.SetActive(false);
-            _tempPrefab.gameObject.SetActive(true);
+            //_tempPrefab.gameObject.SetActive(true);
+            Opened?.Invoke();
 
         if (_number != null)
             ChangedCounter();

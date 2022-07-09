@@ -61,7 +61,7 @@ public class PlayrsBag : MonoBehaviour
             {
                 if (_isDrop)
                 {
-                    if (_collectableItems[i].IsRed)
+                    if (_collectableItems[i].IsBranch)
                     {
                         _collectableItems[i].transform.parent = null;
 

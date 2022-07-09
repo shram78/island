@@ -8,7 +8,7 @@ public class ShowView : MonoBehaviour
     [SerializeField] private Image _uiZone;
     [SerializeField] private ShakeTreeZone _shakeTreeZone;
 
-    private void OnEnable()
+    private void OnEnable() 
     {
         _shakeTreeZone.Enter += OnEntered;
     }
