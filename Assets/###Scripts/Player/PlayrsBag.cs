@@ -14,6 +14,7 @@ public class PlayrsBag : MonoBehaviour
     private int _currentStackPoint = 0;
     private List<CollectableItem> _collectableItems;
     private bool _isDrop;
+    private int _currentStackSize = 5;
 
     private void Start()
     {
@@ -22,7 +23,8 @@ public class PlayrsBag : MonoBehaviour
 
     public void AddCoollectableItem(CollectableItem collectableItem)
     {
-        if (_currentStackPoint < _stackPoints.Length)
+        // if (_currentStackPoint < _stackPoints.Length)
+        if (_currentStackPoint < _currentStackSize)
         {
             collectableItem.transform.SetParent(_bag.transform);
 

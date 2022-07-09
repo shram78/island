@@ -9,7 +9,7 @@ public class Zone : MonoBehaviour
     [SerializeField] private TMP_Text _number;
     [SerializeField] private int _countElement;
 
-    [SerializeField] private GameObject _tempPrefab;
+    //[SerializeField] private GameObject _tempPrefab;
 
     private int _currentNumber = 0;
     private int _maxElement;
