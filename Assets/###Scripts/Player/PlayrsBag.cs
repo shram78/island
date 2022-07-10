@@ -10,6 +10,7 @@ public class PlayrsBag : MonoBehaviour
 
     [SerializeField] private GameObject _movePathPointOne;
     [SerializeField] private GameObject _movePathPointTwo;
+    [SerializeField] private GameObject _textFull;
 
     private int _currentStackPoint = 0;
     private List<CollectableItem> _collectableItems;
@@ -39,6 +40,20 @@ public class PlayrsBag : MonoBehaviour
 
             collectableItem.Select();
         }
+
+        if (_currentStackPoint >= _currentStackSize)
+        {
+            _textFull.gameObject.SetActive(true);
+            StartCoroutine(SwitchOffTimer());
+        }
+    }
+
+    private IEnumerator SwitchOffTimer()
+    {
+        yield return new WaitForSeconds(2f);
+
+        _textFull.gameObject.SetActive(false);
+
     }
 
     public void DropRedELement(int count, Transform pointMove, Zone zone)

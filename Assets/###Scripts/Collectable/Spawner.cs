@@ -84,7 +84,7 @@ public class Spawner : MonoBehaviour
     public void OnSetNewSppeed(bool isEnter)
     {
         if (isEnter)
-            _delaySpawn = 1;
+            _delaySpawn = 2;
         if (isEnter == false)
             _delaySpawn = 7;
     }
