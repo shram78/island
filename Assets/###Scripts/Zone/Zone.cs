@@ -11,7 +11,8 @@ public class Zone : MonoBehaviour
     [SerializeField] private TMP_Text _number;
     [SerializeField] private int _countElement;
 
-    //[SerializeField] private GameObject _tempPrefab;
+    [SerializeField] private bool _isLogSpawner;
+    [SerializeField] private LogSpawner _logSpawner;
 
     private int _currentNumber = 0;
     private int _maxElement;
@@ -35,10 +36,7 @@ public class Zone : MonoBehaviour
                 bag.DropBranch(_countElement, _pointToMove, this);
 
             if (_isLog)
-            {
                 bag.DropLog(_countElement, _pointToMove, this);
-                Debug.Log("LOG!!!!");
-            }
         }
     }
 
@@ -50,7 +48,8 @@ public class Zone : MonoBehaviour
 
     private void ChangedCounter()
     {
-        _number.text = (_maxElement - _currentNumber).ToString();
+        //  _number.text = (_maxElement - _currentNumber).ToString();
+        _number.text = _currentNumber.ToString() + " / " + _maxElement.ToString();
     }
 
     public void RemoveNumber()
@@ -59,12 +58,24 @@ public class Zone : MonoBehaviour
 
         _currentNumber++;
 
+        if (_isLogSpawner)
+            _logSpawner.AddPrefab(1);
+
         if (_countElement == 0)
-            // gameObject.SetActive(false);
-            //_tempPrefab.gameObject.SetActive(true);
             Opened?.Invoke();
 
         if (_number != null)
             ChangedCounter();
+    }
+
+    public void AddNumber()
+    {
+        _countElement++;
+        _currentNumber--;
+
+        if (_number != null)
+        {
+            ChangedCounter();
+        }
     }
 }

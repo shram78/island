@@ -6,6 +6,7 @@ public class LevelObserver : MonoBehaviour
 {
     [SerializeField] private Zone _firstPalm;
     [SerializeField] private GameObject _razerObserver;
+    [SerializeField] private GameObject _secondPalm;
 
     private void OnEnable()
     {
@@ -20,6 +21,6 @@ public class LevelObserver : MonoBehaviour
     private void OnOpenedZone()
     {
         _razerObserver.gameObject.SetActive(true);
+        _secondPalm.gameObject.SetActive(true);
     }
-
 }

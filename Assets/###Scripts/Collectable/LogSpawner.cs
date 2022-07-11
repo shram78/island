@@ -1,27 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
-public class Spawner : MonoBehaviour
+public class LogSpawner : MonoBehaviour
 {
     [SerializeField] private CollectableItem _collectableItem;
     [SerializeField] private SpawnPoint[] _spawnPoints;
-    [SerializeField] private ShakeTreeZone _shakeTreeZone;
+    [SerializeField] private Transform _deliveryPoint;
+    [SerializeField] private Zone _zone;
 
     private int _numberPrefab = 0;
     private CollectableItem _currentPrefab;
     private float _currentTime;
     private int _numberClosedPoints = 0;
-    private float _delaySpawn = 7;
-
-    private void OnEnable()
-    {
-        _shakeTreeZone.Enter += OnSetNewSppeed;
-    }
+    private float _delaySpawn = 1f;
 
     private void Update()
     {
-      //  if (_numberPrefab > 0)
+        if (_numberPrefab > 0)
         {
             if (_numberClosedPoints < _spawnPoints.Length)
             {
@@ -35,14 +32,6 @@ public class Spawner : MonoBehaviour
                 SpawnPrefab();
             }
         }
-
-       // Debug.Log(_numberPrefab);
-    }
-
-    private void OnDisable()
-    {
-        _shakeTreeZone.Enter -= OnSetNewSppeed;
-
     }
 
     private void SpawnPrefab()
@@ -64,6 +53,9 @@ public class Spawner : MonoBehaviour
 
                     AddPrefab(-1);
 
+                    _zone.AddNumber();
+                    MoveToDelivery(_currentPrefab);
+
                     break;
                 }
             }
@@ -83,13 +75,8 @@ public class Spawner : MonoBehaviour
         collectableItem.Selected -= OnSelected;
     }
 
-    public void OnSetNewSppeed(bool isEnter)
+    private void MoveToDelivery(CollectableItem currentLog)
     {
-        if (isEnter)
-            _delaySpawn = 2;
-        if (isEnter == false)
-            _delaySpawn = 7;
+        currentLog.transform.DOLocalMove(_deliveryPoint.position, 3f);
     }
-
-
 }
