@@ -56,12 +56,21 @@ public class PlayrsBag : MonoBehaviour
 
     }
 
-    public void DropRedELement(int count, Transform pointMove, Zone zone)
+    public void DropBranch(int count, Transform pointMove, Zone zone)
     {
         if (count > 0)
         {
             _isDrop = true;
-            StartCoroutine(StartRedDrop(count, pointMove, zone));
+            StartCoroutine(StartBranchDrop(count, pointMove, zone));
+        }
+    }
+
+    public void DropLog(int count, Transform pointMove, Zone zone)
+    {
+        if (count > 0)
+        {
+            _isDrop = true;
+            StartCoroutine(StartLogDrop(count, pointMove, zone));///
         }
     }
 
@@ -70,7 +79,7 @@ public class PlayrsBag : MonoBehaviour
         _isDrop = false;
     }
 
-    private IEnumerator StartRedDrop(int count, Transform pointMove, Zone zone)
+    private IEnumerator StartBranchDrop(int count, Transform pointMove, Zone zone)
     {
         for (int j = 0; j < count; j++)
         {
@@ -79,6 +88,39 @@ public class PlayrsBag : MonoBehaviour
                 if (_isDrop)
                 {
                     if (_collectableItems[i].IsBranch)
+                    {
+                        _collectableItems[i].transform.parent = null;
+
+                        Sequence sequence = DOTween.Sequence();
+
+                        _collectableItems[i].transform.DORotate(new Vector3(180, 0, 0), 0.5f).SetEase(Ease.Linear);
+                        sequence.Append(_collectableItems[i].transform.DOMove(_movePathPointTwo.transform.position, 0.2f).SetEase(Ease.Linear));
+                        sequence.Append(_collectableItems[i].transform.DOMove(_movePathPointOne.transform.position, 0.1f).SetEase(Ease.Linear));
+                        sequence.Append(_collectableItems[i].transform.DOMove(pointMove.position, 0.2f).SetEase(Ease.Linear));
+
+                        StartCoroutine(StartNumberRemove(zone, _collectableItems[i]));
+
+                        RemoveElement(i);
+
+                        StartCoroutine(DisplaceElement());
+
+                        break;
+                    }
+                }
+            }
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+    private IEnumerator StartLogDrop(int count, Transform pointMove, Zone zone)
+    {
+        for (int j = 0; j < count; j++)
+        {
+            for (int i = _collectableItems.Count - 1; i >= 0; i--)
+            {
+                if (_isDrop)
+                {
+                    if (_collectableItems[i].IsLog)
                     {
                         _collectableItems[i].transform.parent = null;
 

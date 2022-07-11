@@ -5,7 +5,7 @@ using DG.Tweening;
 public class CollectableItem : MonoBehaviour
 {
     [SerializeField] private bool _isBranch;
-    [SerializeField] private bool _isFiol;
+    [SerializeField] private bool _isLog;
     [SerializeField] private bool _isGreen;
     [SerializeField] private bool _isBlue;
 
@@ -13,7 +13,7 @@ public class CollectableItem : MonoBehaviour
     private SpawnPoint _spawnPoint;
 
     public bool IsBranch => _isBranch;
-    public bool IsFiol => _isFiol;
+    public bool IsLog => _isLog;
     public bool IsGreen => _isGreen;
     public bool IsBlue => _isBlue;
 

@@ -5,6 +5,8 @@ using UnityEngine.Events;
 public class Zone : MonoBehaviour
 {
     [SerializeField] private bool _isBranch;
+    [SerializeField] private bool _isLog;
+
     [SerializeField] private Transform _pointToMove;
     [SerializeField] private TMP_Text _number;
     [SerializeField] private int _countElement;
@@ -30,7 +32,13 @@ public class Zone : MonoBehaviour
         if (other.gameObject.TryGetComponent(out PlayrsBag bag))
         {
             if (_isBranch)
-                bag.DropRedELement(_countElement, _pointToMove, this);
+                bag.DropBranch(_countElement, _pointToMove, this);
+
+            if (_isLog)
+            {
+                bag.DropLog(_countElement, _pointToMove, this);
+                Debug.Log("LOG!!!!");
+            }
         }
     }
 
