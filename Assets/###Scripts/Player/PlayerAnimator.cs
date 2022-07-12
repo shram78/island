@@ -36,7 +36,7 @@ public class PlayerAnimator : MonoBehaviour
         _animator.SetFloat(Speed, value);
     }
 
-    private void PlayIdleAnimation()
+    public void PlayIdleAnimation()
     {
         _animator.SetFloat(Speed, 0);
     }

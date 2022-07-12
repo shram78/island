@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ShakeTreeZone : MonoBehaviour
+public class CraftZone : MonoBehaviour
 {
     [SerializeField] private PlayerAnimator _playerAnimator;
-    [SerializeField] private PalmAnimator _palmAnimator;
     [SerializeField] private ProgressBar _progressBar;
-    [SerializeField] private Spawner _spawner;
+    [SerializeField] private LogSpawner _logSpawner;
 
     public UnityAction<bool> Enter;
 
@@ -17,7 +16,6 @@ public class ShakeTreeZone : MonoBehaviour
         if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
         {
             _playerAnimator.ShakingTree();
-            _palmAnimator.ShakingTree();
 
             Enter?.Invoke(true);
 
@@ -30,7 +28,6 @@ public class ShakeTreeZone : MonoBehaviour
         if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
         {
             _playerAnimator.StopingShakeTree();
-            _palmAnimator.StopingShakeTree();
 
             Enter?.Invoke(false);
 
@@ -42,12 +39,11 @@ public class ShakeTreeZone : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
         {
-            _progressBar.SetValueInstantly(_spawner._currentTime);
+            _progressBar.SetValueInstantly(_logSpawner._currentTime);
 
-            if (_spawner.CurrentCLosedPoint == 0)
+            if (_logSpawner._numberPrefab == 0)
             {
                 _playerAnimator.StopingShakeTree();
-                _palmAnimator.StopingShakeTree();
             }
         }
     }

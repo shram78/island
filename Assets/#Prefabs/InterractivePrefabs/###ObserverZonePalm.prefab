@@ -5489,7 +5489,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194677457301057034}
   m_LocalRotation: {x: 0, y: 0, z: 0.30070576, w: 0.953717}
-  m_LocalPosition: {x: 0, y: 0, z: 0.493}
+  m_LocalPosition: {x: 0, y: 0, z: 0.423}
   m_LocalScale: {x: 0.8203, y: 0.8203, z: 0.8203}
   m_Children:
   - {fileID: 194677456986153765}
@@ -6529,7 +6529,7 @@ MonoBehaviour:
   _isLog: 0
   _pointToMove: {fileID: 194677458353554224}
   _number: {fileID: 194677457673881464}
-  _countElement: 5
+  _countElement: 6
   _isLogSpawner: 0
   _logSpawner: {fileID: 0}
 --- !u!65 &194677458353554230
@@ -6605,6 +6605,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerAnimator: {fileID: 0}
   _palmAnimator: {fileID: 3000186470923167294}
+  _progressBar: {fileID: 0}
+  _spawner: {fileID: 194677457822465915}
 --- !u!1 &194677458361739028
 GameObject:
   m_ObjectHideFlags: 0

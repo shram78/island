@@ -10,18 +10,23 @@ public class Spawner : MonoBehaviour
 
     private int _numberPrefab = 0;
     private CollectableItem _currentPrefab;
-    private float _currentTime;
     private int _numberClosedPoints = 0;
     private float _delaySpawn = 7;
 
+    public float _currentTime { get; private set; }
+
+    public int CurrentCLosedPoint { get; private set; }
+
     private void OnEnable()
     {
+        CurrentCLosedPoint = _spawnPoints.Length - _numberClosedPoints;
+
         _shakeTreeZone.Enter += OnSetNewSppeed;
     }
 
     private void Update()
     {
-      //  if (_numberPrefab > 0)
+        //  if (_numberPrefab > 0)
         {
             if (_numberClosedPoints < _spawnPoints.Length)
             {
@@ -35,14 +40,12 @@ public class Spawner : MonoBehaviour
                 SpawnPrefab();
             }
         }
-
-       // Debug.Log(_numberPrefab);
+        CurrentCLosedPoint = _spawnPoints.Length - _numberClosedPoints;
     }
 
     private void OnDisable()
     {
         _shakeTreeZone.Enter -= OnSetNewSppeed;
-
     }
 
     private void SpawnPrefab()
@@ -90,6 +93,4 @@ public class Spawner : MonoBehaviour
         if (isEnter == false)
             _delaySpawn = 7;
     }
-
-
 }

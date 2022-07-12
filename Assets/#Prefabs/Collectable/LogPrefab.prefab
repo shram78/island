@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 441787689069218510}
   - component: {fileID: 5767872700829546447}
   - component: {fileID: 1566408510966437618}
+  - component: {fileID: 4373139945291873364}
   m_Layer: 0
   m_Name: LogPrefab
   m_TagString: Untagged
@@ -60,7 +61,7 @@ BoxCollider:
   m_GameObject: {fileID: 441787689069218499}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
@@ -79,7 +80,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &1566408510966437618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,6 +93,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89fe07203b8cb17409f92fb02fe79513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &4373139945291873364
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441787689069218499}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.33
+  m_Height: 2.49
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2775659369509410225
 GameObject:
   m_ObjectHideFlags: 0

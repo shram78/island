@@ -18,6 +18,8 @@ public class Zone : MonoBehaviour
     private int _maxElement;
 
     public UnityAction Opened;
+    public UnityAction<int> PrefabMoveStock;
+
 
     private void Start()
     {
@@ -40,6 +42,15 @@ public class Zone : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.TryGetComponent(out PlayrsBag bag))
+        {
+            if (_isBranch)
+                PrefabMoveStock?.Invoke(_currentNumber);
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.TryGetComponent(out PlayrsBag bug))
@@ -48,7 +59,6 @@ public class Zone : MonoBehaviour
 
     private void ChangedCounter()
     {
-        //  _number.text = (_maxElement - _currentNumber).ToString();
         _number.text = _currentNumber.ToString() + " / " + _maxElement.ToString();
     }
 

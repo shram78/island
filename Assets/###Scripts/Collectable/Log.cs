@@ -5,20 +5,19 @@ using UnityEngine;
 public class Log : MonoBehaviour
 {
     private Rigidbody _rigidbody;
-    private BoxCollider _collider;
-
+    private CapsuleCollider _collider;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _collider = GetComponent<BoxCollider>();
+        _collider = GetComponent<CapsuleCollider>();
 
         StartCoroutine(StartTimer());
     }
 
     private IEnumerator StartTimer()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(6f);
 
         SetRigidbody();
     }

@@ -9,16 +9,40 @@ public class LogSpawner : MonoBehaviour
     [SerializeField] private SpawnPoint[] _spawnPoints;
     [SerializeField] private Transform _deliveryPoint;
     [SerializeField] private Zone _zone;
+    [SerializeField] private CraftZone _craftZone;
+    [SerializeField] private GameObject[] _branchInStocks;
 
-    private int _numberPrefab = 0;
+    public  int _numberPrefab = 0;
     private CollectableItem _currentPrefab;
-    private float _currentTime;
     private int _numberClosedPoints = 0;
-    private float _delaySpawn = 1f;
+    private bool _isInZone = false;
+    private float _delaySpawn = 2f;
+
+    public float _currentTime { get; private set; }
+
+    public int CurrentCLosedPoint { get; private set; }
+
+    private void OnEnable()
+    {
+        CurrentCLosedPoint = _spawnPoints.Length - _numberClosedPoints;
+
+        _craftZone.Enter += SetInzoneStatus;
+        _zone.PrefabMoveStock += ShowBranchnStock;
+    }
+    private void OnDisable()
+    {
+        _craftZone.Enter -= SetInzoneStatus;
+        _zone.PrefabMoveStock += ShowBranchnStock;
+    }
+
+    private void SetInzoneStatus(bool isInZone)
+    {
+        _isInZone = isInZone;
+    }
 
     private void Update()
     {
-        if (_numberPrefab > 0)
+        if (_numberPrefab > 0 && _isInZone)
         {
             if (_numberClosedPoints < _spawnPoints.Length)
             {
@@ -32,6 +56,7 @@ public class LogSpawner : MonoBehaviour
                 SpawnPrefab();
             }
         }
+        CurrentCLosedPoint = _spawnPoints.Length - _numberClosedPoints;
     }
 
     private void SpawnPrefab()
@@ -47,6 +72,8 @@ public class LogSpawner : MonoBehaviour
                     _spawnPoints[i].ChangeFreeStatus(true);
 
                     _currentPrefab.InitSpawnPoint(_spawnPoints[i]);
+
+                    HideBranchnStock(_numberClosedPoints);
 
                     _currentPrefab.Selected += OnSelected;
                     _numberClosedPoints++;
@@ -78,5 +105,17 @@ public class LogSpawner : MonoBehaviour
     private void MoveToDelivery(CollectableItem currentLog)
     {
         currentLog.transform.DOLocalMove(_deliveryPoint.position, 3f);
+    }
+
+    private void ShowBranchnStock(int currentNumber)
+    {
+        for (int i = 0; i < currentNumber; i++)
+            _branchInStocks[i].gameObject.SetActive(true);
+    }
+
+    private void HideBranchnStock(int currentNumber)
+    {
+        for (int i = 0; i < currentNumber + 1; i++)
+            _branchInStocks[i].gameObject.SetActive(false);
     }
 }
