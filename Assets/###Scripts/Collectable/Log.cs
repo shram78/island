@@ -17,7 +17,7 @@ public class Log : MonoBehaviour
 
     private IEnumerator StartTimer()
     {
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(Random.Range(4f, 7f));
 
         SetRigidbody();
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using DG.Tweening;
 
 public class LogSpawner : MonoBehaviour
@@ -12,7 +13,7 @@ public class LogSpawner : MonoBehaviour
     [SerializeField] private CraftZone _craftZone;
     [SerializeField] private GameObject[] _branchInStocks;
 
-    public  int _numberPrefab = 0;
+    public int _numberPrefab = 0;
     private CollectableItem _currentPrefab;
     private int _numberClosedPoints = 0;
     private bool _isInZone = false;
@@ -32,7 +33,7 @@ public class LogSpawner : MonoBehaviour
     private void OnDisable()
     {
         _craftZone.Enter -= SetInzoneStatus;
-        _zone.PrefabMoveStock += ShowBranchnStock;
+        _zone.PrefabMoveStock -= ShowBranchnStock;
     }
 
     private void SetInzoneStatus(bool isInZone)
@@ -115,7 +116,18 @@ public class LogSpawner : MonoBehaviour
 
     private void HideBranchnStock(int currentNumber)
     {
-        for (int i = 0; i < currentNumber + 1; i++)
-            _branchInStocks[i].gameObject.SetActive(false);
+        GameObject log = _branchInStocks.FirstOrDefault(p => p.activeSelf == true);
+
+        Vector3 startPosition = log.transform.position;
+        log.transform.DOLocalJump(new Vector3(0, 1, -1), 1, 1, 1);
+        StartCoroutine(StartTimer(log, startPosition));
     }
+
+    private IEnumerator StartTimer(GameObject log, Vector3 startPosition)
+    {
+        yield return new WaitForSeconds(1f);
+        log.transform.position = startPosition;
+        log.gameObject.SetActive(false);
+    }
+
 }
