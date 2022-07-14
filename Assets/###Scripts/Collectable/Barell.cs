@@ -5,13 +5,17 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
 
-public class Log : MonoBehaviour
+public class Barell : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem _smokeSpawnParticle;
+
     private Rigidbody _rigidbody;
     private CapsuleCollider _collider;
 
     private void Start()
     {
+        _smokeSpawnParticle.Play();
+
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<CapsuleCollider>();
 
@@ -20,7 +24,7 @@ public class Log : MonoBehaviour
 
     private IEnumerator StartTimer()
     {
-        yield return new WaitForSeconds(Random.Range(4f, 7f));
+        yield return new WaitForSeconds(1f);
 
         SetRigidbody();
     }

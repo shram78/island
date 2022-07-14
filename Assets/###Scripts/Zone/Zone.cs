@@ -1,11 +1,13 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
+using System.Collections;
 
 public class Zone : MonoBehaviour
 {
     [SerializeField] private bool _isBranch;
     [SerializeField] private bool _isLog;
+    [SerializeField] private bool _isBarrel;
 
     [SerializeField] private Transform _pointToMove;
     [SerializeField] private TMP_Text _number;
@@ -14,7 +16,7 @@ public class Zone : MonoBehaviour
     [SerializeField] private bool _isLogSpawner;
     [SerializeField] private LogSpawner _logSpawner;
 
-    private int _currentNumber = 0;
+    private int _currentNumBranch = 0;
     private int _maxElement;
 
     public UnityAction Opened;
@@ -34,12 +36,32 @@ public class Zone : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out PlayrsBag bag))
         {
-            if (_isBranch)
-                bag.DropBranch(_countElement, _pointToMove, this);
+           // StartCoroutine(StartTimer(bag));
+            {
+                if (_isBranch)
+                    bag.DropBranch(_countElement, _pointToMove, this);
 
-            if (_isLog)
-                bag.DropLog(_countElement, _pointToMove, this);
+                if (_isLog)
+                    bag.DropLog(_countElement, _pointToMove, this);
+
+                if (_isBarrel)
+                    bag.DropBarell(_countElement, _pointToMove, this);
+            }
         }
+    }
+
+    private IEnumerator StartTimer(PlayrsBag bag)
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        if (_isBranch)
+            bag.DropBranch(_countElement, _pointToMove, this);
+
+        if (_isLog)
+            bag.DropLog(_countElement, _pointToMove, this);
+
+        if (_isBarrel)
+            bag.DropBarell(_countElement, _pointToMove, this);
     }
 
     private void OnTriggerStay(Collider other)
@@ -47,7 +69,11 @@ public class Zone : MonoBehaviour
         if (other.gameObject.TryGetComponent(out PlayrsBag bag))
         {
             if (_isBranch)
-                PrefabMoveStock?.Invoke(_currentNumber);
+                PrefabMoveStock?.Invoke(_currentNumBranch);
+            if (_isLog)
+                PrefabMoveStock?.Invoke(_currentNumBranch);
+            if (_isBarrel)
+                PrefabMoveStock?.Invoke(_currentNumBranch);
         }
     }
 
@@ -59,14 +85,14 @@ public class Zone : MonoBehaviour
 
     private void ChangedCounter()
     {
-        _number.text = _currentNumber.ToString() + " / " + _maxElement.ToString();
+        _number.text = _currentNumBranch.ToString() + " / " + _maxElement.ToString();
     }
 
     public void RemoveNumber()
     {
         _countElement--;
 
-        _currentNumber++;
+        _currentNumBranch++;
 
         if (_isLogSpawner)
             _logSpawner.AddPrefab(1);
@@ -81,7 +107,7 @@ public class Zone : MonoBehaviour
     public void AddNumber()
     {
         _countElement++;
-        _currentNumber--;
+        _currentNumBranch--;
 
         if (_number != null)
         {

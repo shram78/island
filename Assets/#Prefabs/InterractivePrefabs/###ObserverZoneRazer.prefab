@@ -756,7 +756,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: -1.28, y: 0, z: -0.29}
+  m_Center: {x: -0.52, y: 0, z: -0.2}
 --- !u!114 &2412917527817845243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1317,6 +1317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isBranch: 1
   _isLog: 0
+  _isBarrel: 0
   _pointToMove: {fileID: 6427074864578141792}
   _number: {fileID: 6427074865721872471}
   _countElement: 12
@@ -6340,7 +6341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.078431375}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6532,8 +6533,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5, z: 1.5}
-  m_Center: {x: 0.4, y: 0, z: 1.21}
+  m_Size: {x: 2.21, y: 1.5, z: 1.5}
+  m_Center: {x: 0.16, y: 0.36, z: 1.6}
 --- !u!114 &6427074865012622358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7241,7 +7242,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6427074865996547247}
   m_LocalRotation: {x: -6.123234e-17, y: 1, z: -0.000000021855694, w: 1.3382753e-24}
-  m_LocalPosition: {x: -0.9, y: 0, z: -26.41}
+  m_LocalPosition: {x: -0.9, y: 3, z: -26.41}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 6427074866441528237}
@@ -7308,8 +7309,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.83377, y: 5.4858875, z: 9.019804}
-  m_Center: {x: -8.75, y: 2.7429438, z: -15.09}
+  m_Size: {x: 17.07, y: 5.4858875, z: 37}
+  m_Center: {x: -2.7, y: 2.7429438, z: -5.68}
 --- !u!114 &6676072211925870035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7322,7 +7323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9960a399b274f58409fc81f06d0638ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collectableItem: {fileID: 441787689069218508, guid: 33e932e8b400e9948be81292f3327592, type: 3}
+  _prefabSpawm: {fileID: 441787689069218508, guid: 33e932e8b400e9948be81292f3327592, type: 3}
   _spawnPoints:
   - {fileID: 3365884616216926024}
   - {fileID: 6427074864949746170}
@@ -7344,7 +7345,8 @@ MonoBehaviour:
   - {fileID: 9193914747811439225}
   - {fileID: 2845936891082550499}
   - {fileID: 8292151821347307209}
-  _deliveryPoint: {fileID: 6124326320786554195}
+  _deliveryPoint:
+  - {fileID: 6124326320786554195}
   _zone: {fileID: 6427074865996547249}
   _craftZone: {fileID: 2412917527817845243}
   _branchInStocks:
@@ -7368,6 +7370,8 @@ MonoBehaviour:
   - {fileID: 857621146808595938}
   - {fileID: 8056778531563863872}
   - {fileID: 7892154502845146532}
+  _jumpVectorPrefab: {x: 0, y: -1, z: 0}
+  _timeToMovePrefab: 3
   _numberPrefab: 0
 --- !u!114 &6427074865996547249
 MonoBehaviour:
@@ -7383,6 +7387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isBranch: 1
   _isLog: 0
+  _isBarrel: 0
   _pointToMove: {fileID: 8059614917347104890}
   _number: {fileID: 6427074866005212304}
   _countElement: 20
@@ -7804,7 +7809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6427074866165366128
 Transform:
   m_ObjectHideFlags: 0
@@ -7862,7 +7867,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6427074866173920998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.52, y: 0, z: -0.88}
+  m_LocalPosition: {x: 0.52, y: -0.244, z: -0.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6427074866360772314}

@@ -6,12 +6,14 @@ using DG.Tweening;
 
 public class LogSpawner : MonoBehaviour
 {
-    [SerializeField] private CollectableItem _collectableItem;
+    [SerializeField] private CollectableItem _prefabSpawm;
     [SerializeField] private SpawnPoint[] _spawnPoints;
-    [SerializeField] private Transform _deliveryPoint;
+    [SerializeField] private Transform[] _deliveryPoint;
     [SerializeField] private Zone _zone;
     [SerializeField] private CraftZone _craftZone;
     [SerializeField] private GameObject[] _branchInStocks;
+    [SerializeField] private Vector3 _jumpVectorPrefab;
+    [SerializeField] private float _timeToMovePrefab = 3;
 
     public int _numberPrefab = 0;
     private CollectableItem _currentPrefab;
@@ -68,7 +70,7 @@ public class LogSpawner : MonoBehaviour
             {
                 if (_spawnPoints[i].IsClose == false)
                 {
-                    _currentPrefab = Instantiate(_collectableItem, _spawnPoints[i].transform.position, Quaternion.identity);
+                    _currentPrefab = Instantiate(_prefabSpawm, _spawnPoints[i].transform.position, Quaternion.identity);
 
                     _spawnPoints[i].ChangeFreeStatus(true);
 
@@ -105,7 +107,7 @@ public class LogSpawner : MonoBehaviour
 
     private void MoveToDelivery(CollectableItem currentLog)
     {
-        currentLog.transform.DOLocalMove(_deliveryPoint.position, 3f);
+        currentLog.transform.DOLocalMove(_deliveryPoint[Random.Range(0, _deliveryPoint.Length)].position, _timeToMovePrefab);
     }
 
     private void ShowBranchnStock(int currentNumber)
@@ -119,7 +121,7 @@ public class LogSpawner : MonoBehaviour
         GameObject log = _branchInStocks.FirstOrDefault(p => p.activeSelf == true);
 
         Vector3 startPosition = log.transform.position;
-        log.transform.DOLocalJump(new Vector3(0, 1, -1), 1, 1, 1);
+        log.transform.DOLocalJump(_jumpVectorPrefab, 1, 1, 1);
         StartCoroutine(StartTimer(log, startPosition));
     }
 
@@ -129,5 +131,4 @@ public class LogSpawner : MonoBehaviour
         log.transform.position = startPosition;
         log.gameObject.SetActive(false);
     }
-
 }
