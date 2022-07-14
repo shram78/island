@@ -8,18 +8,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private Transform _viewToRotate;
 
-    public float JoistickX { get; private set; }
-    public float JoistickY{ get; private set; }
-
-
     private void FixedUpdate()
     {
         _rigidbody.velocity = (transform.forward * _joystick.Vertical + _joystick.Horizontal * transform.right) * _moveSpeed;
 
         Rotate();
-
-        JoistickX = _joystick.Vertical;
-        JoistickY = _joystick.Horizontal;
     }
 
     private void Rotate()

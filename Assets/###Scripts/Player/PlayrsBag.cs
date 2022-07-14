@@ -16,12 +16,10 @@ public class PlayrsBag : MonoBehaviour
     private List<CollectableItem> _collectableItems;
     private bool _isDrop;
     private int _currentStackSize = 5;
-    private PlayerMovement _playerMovement;
 
     private void Start()
     {
         _collectableItems = new List<CollectableItem>();
-        _playerMovement = GetComponent<PlayerMovement>();
     }
 
     public void AddCoollectableItem(CollectableItem collectableItem)
@@ -60,13 +58,10 @@ public class PlayrsBag : MonoBehaviour
 
     public void DropBranch(int count, Transform pointMove, Zone zone)
     {
-        //  if (_playerMovement.JoistickX == 0 && _playerMovement.JoistickX == 0)
+        if (count > 0)
         {
-            if (count > 0)
-            {
-                _isDrop = true;
-                StartCoroutine(StartBranchDrop(count, pointMove, zone));
-            }
+            _isDrop = true;
+            StartCoroutine(StartBranchDrop(count, pointMove, zone));
         }
     }
 
