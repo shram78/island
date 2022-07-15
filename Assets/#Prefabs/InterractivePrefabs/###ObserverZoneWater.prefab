@@ -2185,7 +2185,7 @@ MonoBehaviour:
   _isBarrel: 0
   _pointToMove: {fileID: 8286517184296826823}
   _numberBranch: {fileID: 8286517185436367344}
-  _countBranch: 0
+  _countBranch: 7
   _isLogSpawner: 0
   _logSpawner: {fileID: 0}
 --- !u!65 &8286517184296826875
@@ -7471,6 +7471,7 @@ MonoBehaviour:
   _zoneClosed: {fileID: 8286517184296826874}
   _zoneOpened: {fileID: 8286517185715367190}
   _heightToUp: 2.9
+  _timeToUp: 0.5
 --- !u!1 &8286517184767019738
 GameObject:
   m_ObjectHideFlags: 0
@@ -13626,8 +13627,8 @@ MonoBehaviour:
   _isLog: 1
   _isBarrel: 0
   _pointToMove: {fileID: 4906549614779494877}
-  _numberBranch: {fileID: 0}
-  _countBranch: 0
+  _numberBranch: {fileID: 8286517185690457399}
+  _countBranch: 10
   _isLogSpawner: 1
   _logSpawner: {fileID: 8604194974572579956}
 --- !u!1 &8425253123771008101

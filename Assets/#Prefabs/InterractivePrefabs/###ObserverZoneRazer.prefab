@@ -1319,8 +1319,8 @@ MonoBehaviour:
   _isLog: 0
   _isBarrel: 0
   _pointToMove: {fileID: 6427074864578141792}
-  _number: {fileID: 6427074865721872471}
-  _countElement: 12
+  _numberBranch: {fileID: 6427074865721872471}
+  _countBranch: 12
   _isLogSpawner: 0
   _logSpawner: {fileID: 0}
 --- !u!65 &6427074864578141788
@@ -7389,8 +7389,8 @@ MonoBehaviour:
   _isLog: 0
   _isBarrel: 0
   _pointToMove: {fileID: 8059614917347104890}
-  _number: {fileID: 6427074866005212304}
-  _countElement: 20
+  _numberBranch: {fileID: 6427074866005212304}
+  _countBranch: 20
   _isLogSpawner: 1
   _logSpawner: {fileID: 6676072211925870035}
 --- !u!1 &6427074866005212301
@@ -7841,6 +7841,7 @@ MonoBehaviour:
   _zoneClosed: {fileID: 6427074864578141789}
   _zoneOpened: {fileID: 6427074865996547249}
   _heightToUp: 2.9
+  _timeToUp: 0.5
 --- !u!1 &6427074866173920998
 GameObject:
   m_ObjectHideFlags: 0

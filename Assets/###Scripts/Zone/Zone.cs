@@ -21,7 +21,10 @@ public class Zone : MonoBehaviour
 
     public UnityAction Opened;
     public UnityAction<int> PrefabMoveStock;
+    public UnityAction<int> Test;
 
+
+    public int CountPalm => _countBranch;
 
     private void Start()
     {
@@ -74,6 +77,7 @@ public class Zone : MonoBehaviour
     public void RemoveNumber()
     {
         _countBranch--;
+        Test?.Invoke(_countBranch);
 
         _currentNumBranch++;
 
