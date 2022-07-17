@@ -44,11 +44,16 @@ public class ShakeTreeZone : MonoBehaviour
         {
             _progressBar.SetValueInstantly(_spawner._currentTime);
 
-            if (_spawner.CurrentCLosedPoint == 0)
-            {
-                _playerAnimator.StopingShakeTree();
-                _palmAnimator.StopingShakeTree();
-            }
+            //if (_spawner.CurrentCLosedPoint == 0)
+            //{
+            //    _playerAnimator.StopingShakeTree();
+            //    _palmAnimator.StopingShakeTree();
+            //}
+            //else
+            //{
+            //    _playerAnimator.ShakingTree();
+            //    _palmAnimator.ShakingTree();
+            //}
         }
     }
 }

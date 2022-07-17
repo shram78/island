@@ -41,10 +41,10 @@ public class CraftZone : MonoBehaviour
         {
             _progressBar.SetValueInstantly(_logSpawner._currentTime);
 
-            if (_logSpawner._numberPrefab == 0)
-            {
-                _playerAnimator.StopingShakeTree();
-            }
+            //if (_logSpawner._numberPrefab == 0)
+            //{
+            //    _playerAnimator.StopingShakeTree();
+            //}
         }
     }
 }

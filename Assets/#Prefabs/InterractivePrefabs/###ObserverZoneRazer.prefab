@@ -737,7 +737,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3266444505482414205}
   m_LocalRotation: {x: -0, y: -0.000000007450579, z: -0, w: 1}
-  m_LocalPosition: {x: 3.080002, y: -0.7600002, z: -2.2900014}
+  m_LocalPosition: {x: 3.08, y: -0.76, z: -3.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4015648444305062458}
@@ -1320,7 +1320,7 @@ MonoBehaviour:
   _isBarrel: 0
   _pointToMove: {fileID: 6427074864578141792}
   _numberBranch: {fileID: 6427074865721872471}
-  _countBranch: 12
+  _countBranch: 8
   _isLogSpawner: 0
   _logSpawner: {fileID: 0}
 --- !u!65 &6427074864578141788
@@ -7242,7 +7242,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6427074865996547247}
   m_LocalRotation: {x: -6.123234e-17, y: 1, z: -0.000000021855694, w: 1.3382753e-24}
-  m_LocalPosition: {x: -0.9, y: 3, z: -26.41}
+  m_LocalPosition: {x: -0.9, y: 0, z: -26.41}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 6427074866441528237}
@@ -7310,7 +7310,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 17.07, y: 5.4858875, z: 37}
-  m_Center: {x: -2.7, y: 2.7429438, z: -5.68}
+  m_Center: {x: 8.61, y: 2.7429438, z: 2.72}
 --- !u!114 &6676072211925870035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13339,7 +13339,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7121105365618602233}
   m_LocalRotation: {x: 0.000000089406946, y: -0.000000014901158, z: 0.30070585, w: 0.953717}
-  m_LocalPosition: {x: 0, y: 0, z: -0.51}
+  m_LocalPosition: {x: 0, y: 0, z: -0.578}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4015648444305062458}
@@ -13347,7 +13347,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 35}
   m_AnchorMin: {x: 0, y: 0.0016312643}
   m_AnchorMax: {x: 0.99025536, y: 0.9968674}
-  m_AnchoredPosition: {x: 0.37999642, y: 0.019993782}
+  m_AnchoredPosition: {x: 0.38, y: 0.02}
   m_SizeDelta: {x: -1.3773038, y: -1.2151031}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2154627691681573317

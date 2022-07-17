@@ -18,12 +18,11 @@ public class PalmAnimator : MonoBehaviour
 
     public void ShakingTree()
     {
-        _animator.SetTrigger(ShakeTree);
+         _animator.SetTrigger(ShakeTree);
     }
 
     public void StopingShakeTree()
     {
         _animator.SetTrigger(StopShakeTree);
     }
-
 }

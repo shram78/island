@@ -2185,7 +2185,7 @@ MonoBehaviour:
   _isBarrel: 0
   _pointToMove: {fileID: 8286517184296826823}
   _numberBranch: {fileID: 8286517185436367344}
-  _countBranch: 7
+  _countBranch: 6
   _isLogSpawner: 0
   _logSpawner: {fileID: 0}
 --- !u!65 &8286517184296826875
