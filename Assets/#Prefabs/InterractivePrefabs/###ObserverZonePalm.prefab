@@ -6215,7 +6215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &194677457822465914
 Transform:
   m_ObjectHideFlags: 0
@@ -6431,7 +6431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &194677458181560248
 Transform:
   m_ObjectHideFlags: 0
@@ -6917,7 +6917,7 @@ MonoBehaviour:
   _isBarrel: 1
   _pointToMove: {fileID: 194677458353554224}
   _numberBranch: {fileID: 194677457673881464}
-  _countBranch: 13
+  _countBranch: 7
   _isLogSpawner: 0
   _logSpawner: {fileID: 0}
 --- !u!65 &194677458353554230

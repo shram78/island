@@ -10,6 +10,8 @@ public class PlayerAnimator : MonoBehaviour
     private const string Speed = "Speed";
     private const string ShakeTree = "ShakeTree";
     private const string StopShakeTree = "StopShakeTree";
+    private const string Dancing = "Dancing";
+
 
     private Animator _animator;
 
@@ -49,5 +51,10 @@ public class PlayerAnimator : MonoBehaviour
     public void StopingShakeTree()
     {
         _animator.SetTrigger(StopShakeTree);
+    }
+
+    public void Dance()
+    {
+        _animator.SetTrigger(Dancing);
     }
 }

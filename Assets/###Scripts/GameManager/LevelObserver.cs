@@ -9,6 +9,7 @@ public class LevelObserver : MonoBehaviour
     [SerializeField] private GameObject _secondPalm;
     [SerializeField] private GameObject _warerObserver;
     [SerializeField] private GameObject _joistick;
+    [SerializeField] private GameObject _raft;
 
     private void OnEnable()
     {
@@ -18,6 +19,7 @@ public class LevelObserver : MonoBehaviour
     private void Start()
     {
         StartCoroutine(SwitchJoistickTimer());
+        StartCoroutine(SwitchSecondPalmTemp());
     }
 
     private void OnDisable()
@@ -28,13 +30,21 @@ public class LevelObserver : MonoBehaviour
     private void OnOpenedZone()
     {
         _razerObserver.gameObject.SetActive(true);
-        _secondPalm.gameObject.SetActive(true);
+      //  _secondPalm.gameObject.SetActive(true);
         _warerObserver.gameObject.SetActive(true);
+
+        _raft.gameObject.SetActive(true);
     }
 
     private IEnumerator SwitchJoistickTimer()
     {
         yield return new WaitForSeconds(2f);
         _joistick.gameObject.SetActive(true);
+    }
+
+    private IEnumerator SwitchSecondPalmTemp()
+    {
+        yield return new WaitForSeconds(400f);
+        _secondPalm.gameObject.SetActive(true);
     }
 }
