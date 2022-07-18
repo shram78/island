@@ -22,14 +22,24 @@ public class AIObserver : MonoBehaviour
     {
         _monkey.gameObject.SetActive(true);
 
-        StartCoroutine(XXXTimer());
     }
-
-    private IEnumerator XXXTimer()
+    public void SetCollectAI()
     {
-        yield return new WaitForSeconds(20f);
-
         _monkey.GetComponent<MonkeyAIPatrol>().enabled = false;
         _monkey.GetComponent<MonkeyAICollect>().enabled = true;
+
+        StartCoroutine(SetPatrolTimer());
+    }
+
+    public void SetPatrolAI()
+    {
+        _monkey.GetComponent<MonkeyAIPatrol>().enabled = true;
+        _monkey.GetComponent<MonkeyAICollect>().enabled = false;
+    }
+
+    private IEnumerator SetPatrolTimer()
+    {
+        yield return new WaitForSeconds(30f);
+        SetPatrolAI();
     }
 }
