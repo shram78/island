@@ -44,7 +44,7 @@ public class LevelObserver : MonoBehaviour
 
     private IEnumerator SwitchSecondPalmTemp()
     {
-        yield return new WaitForSeconds(400f);
+        yield return new WaitForSeconds(200f);
         _secondPalm.gameObject.SetActive(true);
     }
 }

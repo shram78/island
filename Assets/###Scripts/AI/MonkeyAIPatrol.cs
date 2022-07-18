@@ -1,15 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MonkeyAI : MonoBehaviour
+[RequireComponent(typeof(NavMeshAgent))]
+
+public class MonkeyAIPatrol : MonoBehaviour
 {
     [SerializeField] private float _changePositionTime = 5f;
     [SerializeField] private float _moveDistance = 10f;
-    [SerializeField] private float _moveSpeed;
     [SerializeField] private Animator _animator;
+    [SerializeField] private float _moveSpeed;
 
     private NavMeshAgent _navMeshAgent;
-
     private const string Speed = "Speed";
 
     private void Start()
@@ -17,12 +20,16 @@ public class MonkeyAI : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.speed = _moveSpeed;
 
-        InvokeRepeating(nameof(Move), _changePositionTime, _changePositionTime);
+         InvokeRepeating(nameof(FreePatrollMovement), _changePositionTime, _changePositionTime);
     }
-
     private void Update()
     {
-        _animator.SetFloat(Speed, _navMeshAgent.velocity.magnitude / _moveSpeed / 2);
+        _animator.SetFloat(Speed, _navMeshAgent.velocity.magnitude);
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke("FreePatrollMovement");
     }
 
     public Vector3 RandomNavSphere(float distance)
@@ -35,7 +42,7 @@ public class MonkeyAI : MonoBehaviour
         return navHit.position;
     }
 
-    private void Move()
+    private void FreePatrollMovement()
     {
         _navMeshAgent.SetDestination(RandomNavSphere(_moveDistance));
     }

@@ -1320,7 +1320,7 @@ MonoBehaviour:
   _isBarrel: 0
   _pointToMove: {fileID: 6427074864578141792}
   _numberBranch: {fileID: 6427074865721872471}
-  _countBranch: 8
+  _countBranch: 1
   _isLogSpawner: 0
   _logSpawner: {fileID: 0}
 --- !u!65 &6427074864578141788
@@ -7242,7 +7242,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6427074865996547247}
   m_LocalRotation: {x: -6.123234e-17, y: 1, z: -0.000000021855694, w: 1.3382753e-24}
-  m_LocalPosition: {x: -0.9, y: 0, z: -26.41}
+  m_LocalPosition: {x: -0.9, y: 3, z: -26.41}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 6427074866441528237}
