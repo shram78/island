@@ -12,12 +12,13 @@ using DG.Tweening;
 public class MonkeyAIPatrol : MonoBehaviour
 {
     [SerializeField] private float _changePositionTime = 5f;
-    [SerializeField] private float _moveDistance = 10f;
     [SerializeField] private Animator _animator;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private Image _imageEatWant;
     [SerializeField] private Zone _tempZone;
     [SerializeField] private AIObserver _aIObserver;
+    [SerializeField] private Transform[] _points;
+
 
     private NavMeshAgent _navMeshAgent;
 
@@ -25,8 +26,6 @@ public class MonkeyAIPatrol : MonoBehaviour
 
     private void Start()
     {
-       // GetComponent<CapsuleCollider>().enabled = false;
-
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.speed = _moveSpeed;
     }
@@ -53,25 +52,15 @@ public class MonkeyAIPatrol : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out PlayrsBag bag))
         {
-            bag.DropBarell(1, transform, _tempZone);
-
-            _aIObserver.SetCollectAI();
+            bool isDrop = bag.DropBarellToMonkey(1, transform, _tempZone);
+            if (isDrop)
+                _aIObserver.SetCollectAI();
         }
-    }
-
-    public Vector3 RandomNavSphere(float distance)
-    {
-        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * distance;
-        randomDirection += transform.position;
-        NavMeshHit navHit;
-        NavMesh.SamplePosition(randomDirection, out navHit, distance, -1);
-
-        return navHit.position;
     }
 
     private void FreePatrollMovement()
     {
-        _navMeshAgent.SetDestination(RandomNavSphere(_moveDistance));
+        _navMeshAgent.SetDestination(_points[Random.Range(0, _points.Length)].position);
     }
 
     private void ChangeScale()

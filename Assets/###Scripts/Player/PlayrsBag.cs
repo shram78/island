@@ -7,7 +7,6 @@ public class PlayrsBag : MonoBehaviour
 {
     [SerializeField] private GameObject[] _stackPoints;
     [SerializeField] private GameObject _bag;
-
     [SerializeField] private GameObject _movePathPointOne;
     [SerializeField] private GameObject _movePathPointTwo;
     [SerializeField] private GameObject _textFull;
@@ -209,5 +208,19 @@ public class PlayrsBag : MonoBehaviour
         {
             _collectableItems[i].transform.position = _stackPoints[i].transform.position;
         }
+    }
+
+    public bool DropBarellToMonkey(int count, Transform pointMove, Zone zone)
+    {
+        foreach (var item in _collectableItems)
+        {
+            if (item.IsBarrel)
+            {
+                _isDrop = true;
+                StartCoroutine(StartBarrelDrop(count, pointMove, zone));
+                return true;
+            }
+        }
+            return false;
     }
 }
