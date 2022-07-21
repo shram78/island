@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Cinemachine;
-
-
 
 public class LevelComlete : MonoBehaviour
 {
@@ -14,6 +10,12 @@ public class LevelComlete : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera _mainCamera;
     [SerializeField] private CinemachineVirtualCamera _levelCompleteCamera;
     [SerializeField] private PlayerAnimator _animator;
+    [SerializeField] private FloatingJoystick _joystick;
+    [SerializeField] private GameObject _joistickHandler;
+    [SerializeField] private Rigidbody _playerRigidbody;
+    [SerializeField] private GameObject _sail;
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
@@ -24,13 +26,28 @@ public class LevelComlete : MonoBehaviour
 
     private void ArriveFromIsland(PlayrsBag playrsBag)
     {
+        DisableJoystickMovement();
+
         playrsBag.transform.SetParent(transform);
         _confettyParticle.Play();
         _raftRoot.transform.DOMove(_arivvedPoint.position, 30f);
+        _sail.transform.DOScaleY(1, 5);
+        SetNewCamera();
+        _animator.Dance();
+    }
 
+    private void DisableJoystickMovement()
+    {
+        _playerRigidbody.isKinematic = true;
+
+        _joystick.ClearInputValue();
+
+        _joistickHandler.gameObject.SetActive(false);
+    }
+
+    private void SetNewCamera()
+    {
         _mainCamera.Priority = 0;
         _levelCompleteCamera.Priority = 1;
-
-        _animator.Dance();
     }
 }

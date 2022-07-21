@@ -25,8 +25,11 @@ public class ObserverZone : MonoBehaviour
         _zoneOpened.gameObject.SetActive(true);
         _zoneClosed.gameObject.SetActive(false);
 
-        _zoneOpened.transform.DOLocalMoveY(_heightToUp, _timeToUp);
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(_zoneOpened.transform.DOLocalMoveY(_heightToUp, _timeToUp));
+        sequence.Insert(_timeToUp, _zoneOpened.transform.DOShakeScale(0.3f, 0.1f, 5));
 
-        _zoneOpened.transform.DOPunchScale(new Vector3(1.1f, 1.1f, 1.1f), 0.4f);
+
+        // sequence.Insert(_timeToUp, transform.DOPunchScale(new Vector3(1f, 1f, 1f), 0.3f));
     }
 }

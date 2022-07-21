@@ -7,7 +7,7 @@ public class CollectableItem : MonoBehaviour
     [SerializeField] private bool _isBranch;
     [SerializeField] private bool _isLog;
     [SerializeField] private bool _isBarrel;
-    [SerializeField] private bool _isBlue;
+    [SerializeField] private bool _isBanana;
 
     private bool _isSelect = false;
     private SpawnPoint _spawnPoint;
@@ -15,7 +15,7 @@ public class CollectableItem : MonoBehaviour
     public bool IsBranch => _isBranch;
     public bool IsLog => _isLog;
     public bool IsBarrel => _isBarrel;
-    public bool IsBlue => _isBlue;
+    public bool IsBanana => _isBanana;
 
     public UnityAction<CollectableItem> Selected;
 

@@ -6,19 +6,19 @@ using UnityEngine;
 public class AIObserver : MonoBehaviour
 {
     [SerializeField] private GameObject _monkey;
-    [SerializeField] private Zone _firstPalm;
-    [SerializeField] private float _timeReturnToPatrol = 30f;
+    [SerializeField] private Zone _razerZone;
+    [SerializeField] private float _timeReturnToPatrol = 120f;
 
     public float TimeRemain => _timeReturnToPatrol;
 
     private void OnEnable()
     {
-        _firstPalm.Opened += OnOpenedMonkey;
+        _razerZone.Opened += OnOpenedMonkey;
     }
 
     private void OnDisable()
     {
-        _firstPalm.Opened -= OnOpenedMonkey;
+        _razerZone.Opened -= OnOpenedMonkey;
     }
 
     private void OnOpenedMonkey()

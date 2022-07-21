@@ -8,6 +8,7 @@ public class ObserverZoneRaft : MonoBehaviour
     [SerializeField] private Zone _zoneBranch;
     [SerializeField] private Zone _zoneLog;
     [SerializeField] private Zone _zoneBarell;
+    [SerializeField] private Zone _zoneBanana;
     [SerializeField] private GameObject _raftRoot;
     [SerializeField] private GameObject _raftAlfa;
 
@@ -17,12 +18,14 @@ public class ObserverZoneRaft : MonoBehaviour
     private bool _isBranchOpen = false;
     private bool _isLogOpen = false;
     private bool _isBarellOpen = false;
+    private bool _isBananaOpen = false;
 
     private void OnEnable()
     {
         _zoneBranch.Opened += OnSetBranch;
         _zoneLog.Opened += OnSetLog;
         _zoneBarell.Opened += OnSetBarell;
+        _zoneBanana.Opened += OnSetBanana;
     }
 
     private void OnDisable()
@@ -30,6 +33,7 @@ public class ObserverZoneRaft : MonoBehaviour
         _zoneBranch.Opened -= OnSetBranch;
         _zoneLog.Opened -= OnSetLog;
         _zoneBarell.Opened -= OnSetBarell;
+        _zoneBanana.Opened -= OnSetBanana;
     }
 
     private void OnSetBranch()
@@ -48,16 +52,22 @@ public class ObserverZoneRaft : MonoBehaviour
         SpawnRaft();
     }
 
+    private void OnSetBanana()
+    {
+        _isBananaOpen = true;
+        SpawnRaft();
+    }
+
     private void SpawnRaft()
     {
-        if (_isBranchOpen && _isLogOpen && _isBarellOpen)
+        if (_isBranchOpen && _isLogOpen && _isBarellOpen && _isBananaOpen)
         {
             _raftRoot.gameObject.SetActive(true);
             _raftAlfa.gameObject.SetActive(false);
 
-            _raftRoot.transform.DOLocalMoveY(_heightToUp, _timeToUp);
-
-            _raftRoot.transform.DOPunchScale(new Vector3(1.1f, 1.1f, 1.1f), 0.4f);
+            Sequence sequence = DOTween.Sequence();
+            sequence.Append(_raftRoot.transform.DOLocalMoveY(_heightToUp, _timeToUp));
+            sequence.Insert(_timeToUp, _raftRoot.transform.DOShakeScale(0.3f, 0.1f, 5));
         }
     }
 }

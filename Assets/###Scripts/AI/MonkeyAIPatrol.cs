@@ -52,7 +52,7 @@ public class MonkeyAIPatrol : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out PlayrsBag bag))
         {
-            bool isDrop = bag.DropBarellToMonkey(1, transform, _tempZone);
+            bool isDrop = bag.DropBananaToMonkey(1, transform, _tempZone);
             if (isDrop)
                 _aIObserver.SetCollectAI();
         }

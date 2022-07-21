@@ -2183,9 +2183,10 @@ MonoBehaviour:
   _isBranch: 0
   _isLog: 1
   _isBarrel: 0
+  _isBanana: 0
   _pointToMove: {fileID: 8286517184296826823}
   _numberBranch: {fileID: 8286517185436367344}
-  _countBranch: 6
+  _countBranch: 1
   _isLogSpawner: 0
   _logSpawner: {fileID: 0}
 --- !u!65 &8286517184296826875
@@ -13626,6 +13627,7 @@ MonoBehaviour:
   _isBranch: 0
   _isLog: 1
   _isBarrel: 0
+  _isBanana: 0
   _pointToMove: {fileID: 4906549614779494877}
   _numberBranch: {fileID: 8286517185690457399}
   _countBranch: 10

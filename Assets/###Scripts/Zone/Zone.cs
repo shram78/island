@@ -8,6 +8,7 @@ public class Zone : MonoBehaviour
     [SerializeField] private bool _isBranch;
     [SerializeField] private bool _isLog;
     [SerializeField] private bool _isBarrel;
+    [SerializeField] private bool _isBanana;
 
     [SerializeField] private Transform _pointToMove;
     [SerializeField] private TMP_Text _numberBranch;
@@ -41,12 +42,12 @@ public class Zone : MonoBehaviour
         {
             if (_isBranch)
                 bag.DropBranch(_countBranch, _pointToMove, this);
-
             if (_isLog)
                 bag.DropLog(_countBranch, _pointToMove, this);
-
             if (_isBarrel)
                 bag.DropBarell(_countBranch, _pointToMove, this);
+             if (_isBanana)
+             bag.DropBanana(_countBranch, _pointToMove, this);
         }
     }
 
@@ -59,6 +60,8 @@ public class Zone : MonoBehaviour
             if (_isLog)
                 PrefabMoveStock?.Invoke(_currentNumBranch);
             if (_isBarrel)
+                PrefabMoveStock?.Invoke(_currentNumBranch);
+            if (_isBanana)
                 PrefabMoveStock?.Invoke(_currentNumBranch);
         }
     }
