@@ -11,9 +11,17 @@ public class ObserverZoneRaft : MonoBehaviour
     [SerializeField] private Zone _zoneBanana;
     [SerializeField] private GameObject _raftRoot;
     [SerializeField] private GameObject _raftAlfa;
+    [SerializeField] private LevelComlete _levelComplete;
 
     [SerializeField] private float _heightToUp;
     [SerializeField] private float _timeToUp = 0.5f;
+
+    [SerializeField] private GameObject[] _barrelsInRaft;
+    [SerializeField] private GameObject[] _bananaInRaft;
+
+    private int _currenBarrel = 0;
+    private int _currentBanana = 0;
+
 
     private bool _isBranchOpen = false;
     private bool _isLogOpen = false;
@@ -36,6 +44,14 @@ public class ObserverZoneRaft : MonoBehaviour
         _zoneBanana.Opened -= OnSetBanana;
     }
 
+    private void Update()
+    {
+        _currenBarrel = _zoneBarell.CountPalm;
+        _currentBanana = _zoneBanana.CountPalm;
+        _barrelsInRaft[_currenBarrel].gameObject.SetActive(true);
+        _bananaInRaft[_currentBanana].gameObject.SetActive(true);
+    }
+
     private void OnSetBranch()
     {
         _isBranchOpen = true;
@@ -49,18 +65,21 @@ public class ObserverZoneRaft : MonoBehaviour
     private void OnSetBarell()
     {
         _isBarellOpen = true;
-        SpawnRaft();
+        // SpawnRaft();
+        Delivery();
     }
 
     private void OnSetBanana()
     {
         _isBananaOpen = true;
-        SpawnRaft();
+        // SpawnRaft();
+        Delivery();
+
     }
 
     private void SpawnRaft()
     {
-        if (_isBranchOpen && _isLogOpen && _isBarellOpen && _isBananaOpen)
+        if (_isBranchOpen && _isLogOpen)
         {
             _raftRoot.gameObject.SetActive(true);
             _raftAlfa.gameObject.SetActive(false);
@@ -68,6 +87,14 @@ public class ObserverZoneRaft : MonoBehaviour
             Sequence sequence = DOTween.Sequence();
             sequence.Append(_raftRoot.transform.DOLocalMoveY(_heightToUp, _timeToUp));
             sequence.Insert(_timeToUp, _raftRoot.transform.DOShakeScale(0.3f, 0.1f, 5));
+        }
+    }
+
+    private void Delivery()
+    {
+        if (_isBarellOpen && _isBananaOpen)
+        {
+            _levelComplete.SetFoofCollected();
         }
     }
 }

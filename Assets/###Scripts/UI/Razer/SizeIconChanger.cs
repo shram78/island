@@ -9,12 +9,18 @@ public class SizeIconChanger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.TryGetComponent(out Monkey monkey))
+            return;
+
         if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
             _uiZone.transform.DOScale(1.5f, 0.5f);
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.TryGetComponent(out Monkey monkey))
+            return;
+            
         if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
             _uiZone.transform.DOScale(1f, 0.5f);
     }

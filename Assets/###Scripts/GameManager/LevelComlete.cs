@@ -14,13 +14,24 @@ public class LevelComlete : MonoBehaviour
     [SerializeField] private GameObject _joistickHandler;
     [SerializeField] private Rigidbody _playerRigidbody;
     [SerializeField] private GameObject _sail;
+    [SerializeField] private GameObject _UIFood;
 
+    private bool _isFoofCollected = false;
+
+    public void SetFoofCollected()
+    {
+        _isFoofCollected = true;
+        _UIFood.gameObject.SetActive(false);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
+        if (_isFoofCollected)
         {
-            ArriveFromIsland(playrsBag);
+            if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
+            {
+                ArriveFromIsland(playrsBag);
+            }
         }
     }
 

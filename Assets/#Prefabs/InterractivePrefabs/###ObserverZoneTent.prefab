@@ -1590,7 +1590,7 @@ MonoBehaviour:
   _isBarrel: 0
   _isBanana: 1
   _pointToMove: {fileID: 7180867307580670922}
-  _numberBranch: {fileID: 0}
+  _numberBranch: {fileID: 782781770}
   _countBranch: 100
   _isLogSpawner: 0
   _logSpawner: {fileID: 0}
@@ -2321,7 +2321,7 @@ MonoBehaviour:
   _isBarrel: 1
   _isBanana: 0
   _pointToMove: {fileID: 7180867307580670922}
-  _numberBranch: {fileID: 0}
+  _numberBranch: {fileID: 651579888}
   _countBranch: 100
   _isLogSpawner: 0
   _logSpawner: {fileID: 0}
@@ -2964,7 +2964,7 @@ MonoBehaviour:
   _isBarrel: 0
   _isBanana: 0
   _pointToMove: {fileID: 7180867307580670922}
-  _numberBranch: {fileID: 0}
+  _numberBranch: {fileID: 1746401379}
   _countBranch: 100
   _isLogSpawner: 0
   _logSpawner: {fileID: 0}
@@ -3406,7 +3406,7 @@ MonoBehaviour:
   _isBarrel: 0
   _isBanana: 0
   _pointToMove: {fileID: 7180867307580670922}
-  _numberBranch: {fileID: 0}
+  _numberBranch: {fileID: 1344794747}
   _countBranch: 100
   _isLogSpawner: 0
   _logSpawner: {fileID: 0}
@@ -24306,7 +24306,7 @@ GameObject:
   - component: {fileID: 8531635423385781826}
   - component: {fileID: 8531635423385781827}
   - component: {fileID: 8531635423385781825}
-  - component: {fileID: 8531635423385781824}
+  - component: {fileID: 8809004493292124432}
   m_Layer: 0
   m_Name: TentRoot
   m_TagString: Untagged
@@ -24395,26 +24395,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 17.07, y: 5.4858875, z: 37}
   m_Center: {x: 8.61, y: 2.7429438, z: 2.72}
---- !u!114 &8531635423385781824
+--- !u!114 &8809004493292124432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8531635423385781854}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76076cdc45b9d9546a891f52f4cb281b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isBranch: 0
-  _isLog: 0
-  _isBarrel: 0
-  _isBanana: 0
+  _isBranch: 1
+  _isLog: 1
+  _isBarrel: 1
+  _isBanana: 1
   _pointToMove: {fileID: 0}
-  _numberBranch: {fileID: 8531635423410699873}
-  _countBranch: 20
-  _isLogSpawner: 1
+  _numberBranch: {fileID: 0}
+  _countBranch: 0
+  _isLogSpawner: 0
   _logSpawner: {fileID: 0}
 --- !u!1 &8531635423410699900
 GameObject:
@@ -30243,7 +30243,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8531635424093601665
 Transform:
   m_ObjectHideFlags: 0
@@ -30273,7 +30273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _zoneClosed: {fileID: 8531635424670112940}
-  _zoneOpened: {fileID: 8531635423385781824}
+  _zoneOpened: {fileID: 8809004493292124432}
   _heightToUp: 3
   _timeToUp: 0.5
 --- !u!1 &8531635424118899735
@@ -35473,7 +35473,7 @@ MonoBehaviour:
   _isBanana: 0
   _pointToMove: {fileID: 8531635424670112913}
   _numberBranch: {fileID: 8531635423664788134}
-  _countBranch: 12
+  _countBranch: 10
   _isLogSpawner: 0
   _logSpawner: {fileID: 0}
 --- !u!65 &8531635424670112941

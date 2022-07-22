@@ -39,12 +39,12 @@ public class LevelObserver : MonoBehaviour
     private void OnOpenedTent()
     {
         _tentObserved.gameObject.SetActive(true);
-        _raftObserver.gameObject.SetActive(true);
     }
 
     private void OnOpenedRazer()
     {
         _razerObserver.gameObject.SetActive(true);
+        _raftObserver.gameObject.SetActive(true);
     }
 
     private void OnOpenedWater()

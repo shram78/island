@@ -7,11 +7,15 @@ public class Spawner : MonoBehaviour
     [SerializeField] private CollectableItem _collectableItem;
     [SerializeField] private SpawnPoint[] _spawnPoints;
     [SerializeField] private ShakeTreeZone _shakeTreeZone;
+    [SerializeField] private float _currentDdelaySpawn = 10;
+    [SerializeField] private float _delayManualSpawn = 2;
+
+    private float _delayAutoSpawn;
+
 
     private int _numberPrefab = 0;
     private CollectableItem _currentPrefab;
     private int _numberClosedPoints = 0;
-    private float _delaySpawn = 7;
 
     public float _currentTime { get; private set; }
 
@@ -24,6 +28,11 @@ public class Spawner : MonoBehaviour
         _shakeTreeZone.Enter += OnSetNewSppeed;
     }
 
+    private void Start()
+    {
+        _delayAutoSpawn = _currentDdelaySpawn;
+    }
+
     private void Update()
     {
         //  if (_numberPrefab > 0)
@@ -33,7 +42,7 @@ public class Spawner : MonoBehaviour
                 _currentTime += Time.deltaTime;
             }
 
-            if (_currentTime >= _delaySpawn)
+            if (_currentTime >= _delayAutoSpawn)
             {
                 _currentTime = 0;
 
@@ -89,8 +98,8 @@ public class Spawner : MonoBehaviour
     public void OnSetNewSppeed(bool isEnter)
     {
         if (isEnter)
-            _delaySpawn = 2;
+            _delayAutoSpawn = _delayManualSpawn;
         if (isEnter == false)
-            _delaySpawn = 7;
+            _delayAutoSpawn = _currentDdelaySpawn;
     }
 }

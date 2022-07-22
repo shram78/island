@@ -15,8 +15,6 @@ public class MonkeyAICollect : MonoBehaviour
     [SerializeField] private Transform[] _points;
     [SerializeField] private Animator _animator;
     [SerializeField] private ParticleSystem _emojyParticle;
-    [SerializeField] private TMP_Text _textTimeRemain;
-    [SerializeField] private AIObserver _aIObserver;
 
     private float _currentTimeReamin;
     private int _destanationPoint = 0;
@@ -34,10 +32,6 @@ public class MonkeyAICollect : MonoBehaviour
 
     private void OnEnable()
     {
-        _currentTimeReamin = _aIObserver.TimeRemain;
-
-        _textTimeRemain.gameObject.SetActive(true);
-
         _isDancing = true;
         StartCoroutine(SetPatrolTimer());
 
@@ -46,19 +40,8 @@ public class MonkeyAICollect : MonoBehaviour
         _animator.SetTrigger(Dance);
     }
 
-    private void OnDisable()
-    {
-        _textTimeRemain.gameObject.SetActive(false);
-    }
-
     private void Update()
     {
-        _currentTimeReamin -= Time.deltaTime;
-
-        int showPoint = Convert.ToInt32(_currentTimeReamin);
-
-        _textTimeRemain.text = "..." + showPoint.ToString();
-
         _animator.SetFloat(Speed, _agent.velocity.magnitude);
 
         if (!_agent.pathPending && _agent.remainingDistance < 0.5f)

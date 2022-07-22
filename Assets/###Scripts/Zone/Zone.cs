@@ -36,6 +36,12 @@ public class Zone : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        if (_numberBranch != null)
+        ChangedCounter();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out PlayrsBag bag))
@@ -46,8 +52,8 @@ public class Zone : MonoBehaviour
                 bag.DropLog(_countBranch, _pointToMove, this);
             if (_isBarrel)
                 bag.DropBarell(_countBranch, _pointToMove, this);
-             if (_isBanana)
-             bag.DropBanana(_countBranch, _pointToMove, this);
+            if (_isBanana)
+                bag.DropBanana(_countBranch, _pointToMove, this);
         }
     }
 
