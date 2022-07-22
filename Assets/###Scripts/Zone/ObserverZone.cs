@@ -28,8 +28,5 @@ public class ObserverZone : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
         sequence.Append(_zoneOpened.transform.DOLocalMoveY(_heightToUp, _timeToUp));
         sequence.Insert(_timeToUp, _zoneOpened.transform.DOShakeScale(0.3f, 0.1f, 5));
-
-
-        // sequence.Insert(_timeToUp, transform.DOPunchScale(new Vector3(1f, 1f, 1f), 0.3f));
     }
 }

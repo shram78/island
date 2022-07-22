@@ -7,7 +7,7 @@ public class AIObserver : MonoBehaviour
 {
     [SerializeField] private GameObject _monkey;
     [SerializeField] private Zone _razerZone;
-    [SerializeField] private float _timeReturnToPatrol = 120f;
+    [SerializeField] private float _timeReturnToPatrol = 90f;
 
     public float TimeRemain => _timeReturnToPatrol;
 
@@ -43,6 +43,7 @@ public class AIObserver : MonoBehaviour
     private IEnumerator SetPatrolTimer()
     {
         yield return new WaitForSeconds(_timeReturnToPatrol);
+
         SetPatrolAI();
     }
 }
