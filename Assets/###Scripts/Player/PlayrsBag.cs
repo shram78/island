@@ -16,6 +16,11 @@ public class PlayrsBag : MonoBehaviour
     private List<CollectableItem> _collectableItems;
     private bool _isDrop;
 
+    private Coroutine StopDropBranch;
+    private Coroutine StopDropLog;
+    private Coroutine StopDropBarell;
+    private Coroutine StopDropBanana;
+
     private void Start()
     {
         _collectableItems = new List<CollectableItem>();
@@ -47,7 +52,7 @@ public class PlayrsBag : MonoBehaviour
         }
     }
 
-    private IEnumerator SwitchOffTimer()                                                                                  
+    private IEnumerator SwitchOffTimer()
     {
         yield return new WaitForSeconds(2f);
 
@@ -60,7 +65,7 @@ public class PlayrsBag : MonoBehaviour
         if (count > 0)
         {
             _isDrop = true;
-            StartCoroutine(StartBranchDrop(count, pointMove, zone));
+            StopDropBranch = StartCoroutine(StartBranchDrop(count, pointMove, zone));
         }
     }
 
@@ -69,7 +74,7 @@ public class PlayrsBag : MonoBehaviour
         if (count > 0)
         {
             _isDrop = true;
-            StartCoroutine(StartLogDrop(count, pointMove, zone));
+            StopDropLog = StartCoroutine(StartLogDrop(count, pointMove, zone));
         }
     }
 
@@ -78,21 +83,34 @@ public class PlayrsBag : MonoBehaviour
         if (count > 0)
         {
             _isDrop = true;
-            StartCoroutine(StartBarrelDrop(count, pointMove, zone));
+            StopDropBarell = StartCoroutine(StartBarrelDrop(count, pointMove, zone));
         }
     }
+
     public void DropBanana(int count, Transform pointMove, Zone zone)
     {
         if (count > 0)
         {
             _isDrop = true;
-            StartCoroutine(StartBananaDrop(count, pointMove, zone));
+            StopDropBanana = StartCoroutine(StartBananaDrop(count, pointMove, zone));
         }
     }
 
     public void StopDropCoroutine()
     {
         _isDrop = false;
+
+        if (StopDropBranch != null)
+            StopCoroutine(StopDropBranch);
+
+        if (StopDropLog != null)
+            StopCoroutine(StopDropLog);
+
+        if (StopDropBarell != null)
+            StopCoroutine(StopDropBarell);
+
+        if (StopDropBanana != null)
+            StopCoroutine(StopDropBanana);
     }
 
     private IEnumerator StartBranchDrop(int count, Transform pointMove, Zone zone)
@@ -194,7 +212,7 @@ public class PlayrsBag : MonoBehaviour
         }
     }
 
-     private IEnumerator StartBananaDrop(int count, Transform pointMove, Zone zone)
+    private IEnumerator StartBananaDrop(int count, Transform pointMove, Zone zone)
     {
         for (int j = 0; j < count; j++)
         {
@@ -262,6 +280,6 @@ public class PlayrsBag : MonoBehaviour
                 return true;
             }
         }
-            return false;
+        return false;
     }
 }

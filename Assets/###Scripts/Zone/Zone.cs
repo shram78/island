@@ -22,7 +22,7 @@ public class Zone : MonoBehaviour
 
     public UnityAction Opened;
     public UnityAction<int> PrefabMoveStock;
-    public UnityAction<int> Test;
+    public UnityAction<int> BarrelsDropToPalm;
 
 
     public int CountPalm => _countBranch;
@@ -34,12 +34,6 @@ public class Zone : MonoBehaviour
             _maxBranch = _countBranch;
             ChangedCounter();
         }
-    }
-
-    private void OnEnable()
-    {
-        if (_numberBranch != null)
-        ChangedCounter();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -86,7 +80,7 @@ public class Zone : MonoBehaviour
     public void RemoveNumber()
     {
         _countBranch--;
-        Test?.Invoke(_countBranch);
+        BarrelsDropToPalm?.Invoke(_countBranch);
 
         _currentNumBranch++;
 

@@ -12,7 +12,7 @@ public class PalmGrowth : MonoBehaviour
 
     private void OnEnable()
     {
-        _palmAlfa.Test += OnChangeHeight;
+        _palmAlfa.BarrelsDropToPalm += OnChangeHeight;
     }
     private void Start()
     {
@@ -21,7 +21,7 @@ public class PalmGrowth : MonoBehaviour
 
     private void OnDisable()
     {
-        _palmAlfa.Test -= OnChangeHeight;
+        _palmAlfa.BarrelsDropToPalm -= OnChangeHeight;
     }
 
     private void OnChangeHeight(int countPalm) 
