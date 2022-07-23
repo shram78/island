@@ -16,6 +16,8 @@ public class Zone : MonoBehaviour
 
     [SerializeField] private bool _isLogSpawner;
     [SerializeField] private LogSpawner _logSpawner;
+    [SerializeField] private bool _isThisDropZone;
+    [SerializeField] private FloatingJoystick _joystick;
 
     private int _currentNumBranch = 0;
     private int _maxBranch;
@@ -38,7 +40,12 @@ public class Zone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out PlayrsBag bag))
+        if (_isThisDropZone)
+        {
+            StartCoroutine(CheckJoistickBeforeDrop(other));
+        }
+
+        else if (other.gameObject.TryGetComponent(out PlayrsBag bag))
         {
             if (_isBranch)
                 bag.DropBranch(_countBranch, _pointToMove, this);
@@ -48,6 +55,26 @@ public class Zone : MonoBehaviour
                 bag.DropBarell(_countBranch, _pointToMove, this);
             if (_isBanana)
                 bag.DropBanana(_countBranch, _pointToMove, this);
+        }
+    }
+
+    private IEnumerator CheckJoistickBeforeDrop(Collider other)
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        if (_joystick.Horizontal == 0 || _joystick.Vertical == 0)
+        {
+            if (other.gameObject.TryGetComponent(out PlayrsBag bag))
+            {
+                if (_isBranch)
+                    bag.DropBranch(_countBranch, _pointToMove, this);
+                if (_isLog)
+                    bag.DropLog(_countBranch, _pointToMove, this);
+                if (_isBarrel)
+                    bag.DropBarell(_countBranch, _pointToMove, this);
+                if (_isBanana)
+                    bag.DropBanana(_countBranch, _pointToMove, this);
+            }
         }
     }
 

@@ -13,12 +13,10 @@ public class MonkeyAIPatrol : MonoBehaviour
 {
     [SerializeField] private float _changePositionTime = 5f;
     [SerializeField] private Animator _animator;
-    [SerializeField] private float _moveSpeed;
     [SerializeField] private Image _imageEatWant;
     [SerializeField] private Zone _tempZone;
     [SerializeField] private AIObserver _aIObserver;
     [SerializeField] private Transform[] _points;
-
 
     private NavMeshAgent _navMeshAgent;
 
@@ -27,7 +25,6 @@ public class MonkeyAIPatrol : MonoBehaviour
     private void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _navMeshAgent.speed = _moveSpeed;
     }
 
     private void OnEnable()

@@ -14,7 +14,10 @@ public class ShakeTreeZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
+        if (other.gameObject.TryGetComponent(out Monkey monkey))
+            return;
+
+        else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
         {
             _playerAnimator.ShakingTree();
             _palmAnimator.ShakingTree();
@@ -27,7 +30,10 @@ public class ShakeTreeZone : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
+        if (other.gameObject.TryGetComponent(out Monkey monkey))
+            return;
+
+        else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
         {
             _playerAnimator.StopingShakeTree();
             _palmAnimator.StopingShakeTree();
@@ -40,20 +46,10 @@ public class ShakeTreeZone : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
-        {
-            _progressBar.SetValueInstantly(_spawner._currentTime);
+        if (other.gameObject.TryGetComponent(out Monkey monkey))
+            return;
 
-            //if (_spawner.CurrentCLosedPoint == 0)
-            //{
-            //    _playerAnimator.StopingShakeTree();
-            //    _palmAnimator.StopingShakeTree();
-            //}
-            //else
-            //{
-            //    _playerAnimator.ShakingTree();
-            //    _palmAnimator.ShakingTree();
-            //}
-        }
+        else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
+            _progressBar.SetValueInstantly(_spawner._currentTime);
     }
 }

@@ -8,14 +8,17 @@ public class ShowView : MonoBehaviour
     [SerializeField] private Image _uiZone;
     [SerializeField] private ShakeTreeZone _shakeTreeZone;
 
-    private void OnEnable() 
+    private void OnEnable()
     {
         _shakeTreeZone.Enter += OnEntered;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
+        if (other.gameObject.TryGetComponent(out Monkey monkey))
+            return;
+
+        else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
         {
             _viewZone.gameObject.SetActive(true);
 
@@ -25,8 +28,10 @@ public class ShowView : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
-            // _viewZone.gameObject.SetActive(false);
+        if (other.gameObject.TryGetComponent(out Monkey monkey))
+            return;
+
+        else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
             _uiZone.transform.DOScale(0f, 0.5f);
     }
 
@@ -39,7 +44,7 @@ public class ShowView : MonoBehaviour
     {
         if (isEnter)
             _uiZone.transform.DOScale(1.5f, 0.5f);
-        if(isEnter == false)
+        if (isEnter == false)
             _uiZone.transform.DOScale(1f, 0.5f);
     }
 

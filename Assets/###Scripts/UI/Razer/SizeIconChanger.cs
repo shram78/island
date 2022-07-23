@@ -12,7 +12,7 @@ public class SizeIconChanger : MonoBehaviour
         if (other.gameObject.TryGetComponent(out Monkey monkey))
             return;
 
-        if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
+        else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
             _uiZone.transform.DOScale(1.5f, 0.5f);
     }
 
@@ -21,7 +21,7 @@ public class SizeIconChanger : MonoBehaviour
         if (other.gameObject.TryGetComponent(out Monkey monkey))
             return;
             
-        if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
+        else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
             _uiZone.transform.DOScale(1f, 0.5f);
     }
 }

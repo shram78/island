@@ -15,6 +15,8 @@ public class LevelComlete : MonoBehaviour
     [SerializeField] private Rigidbody _playerRigidbody;
     [SerializeField] private GameObject _sail;
     [SerializeField] private GameObject _UIFood;
+    [SerializeField] private GameObject _UILetsGo;
+
 
     private bool _isFoofCollected = false;
 
@@ -22,6 +24,7 @@ public class LevelComlete : MonoBehaviour
     {
         _isFoofCollected = true;
         _UIFood.gameObject.SetActive(false);
+        _UILetsGo.gameObject.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,9 +32,7 @@ public class LevelComlete : MonoBehaviour
         if (_isFoofCollected)
         {
             if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
-            {
                 ArriveFromIsland(playrsBag);
-            }
         }
     }
 
@@ -39,6 +40,7 @@ public class LevelComlete : MonoBehaviour
     {
         DisableJoystickMovement();
 
+        _UILetsGo.gameObject.SetActive(false);
         playrsBag.transform.SetParent(transform);
         _confettyParticle.Play();
         _raftRoot.transform.DOMove(_arivvedPoint.position, 30f);

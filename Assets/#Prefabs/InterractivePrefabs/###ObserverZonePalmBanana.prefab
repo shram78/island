@@ -590,6 +590,8 @@ MonoBehaviour:
   _countBranch: 0
   _isLogSpawner: 0
   _logSpawner: {fileID: 0}
+  _isThisDropZone: 0
+  _joystick: {fileID: 0}
 --- !u!1 &1335798311287017273
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,6 +943,8 @@ MonoBehaviour:
   _countBranch: 6
   _isLogSpawner: 0
   _logSpawner: {fileID: 0}
+  _isThisDropZone: 0
+  _joystick: {fileID: 0}
 --- !u!65 &1335798311530725913
 BoxCollider:
   m_ObjectHideFlags: 0

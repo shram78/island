@@ -2,12 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AIObserver : MonoBehaviour
 {
     [SerializeField] private GameObject _monkey;
     [SerializeField] private Zone _razerZone;
     [SerializeField] private float _timeReturnToPatrol = 60f;
+    [SerializeField] private NavMeshAgent _navMeshAgent;
+    [SerializeField] private float _patrolSpeed = 1.5f;
+    [SerializeField] private float _collecetedSpeed = 6f;
+
 
     private void OnEnable()
     {
@@ -26,6 +31,8 @@ public class AIObserver : MonoBehaviour
     }
     public void SetCollectAI()
     {
+        _navMeshAgent.speed = _collecetedSpeed;
+
         _monkey.GetComponent<MonkeyAIPatrol>().enabled = false;
         _monkey.GetComponent<MonkeyAICollect>().enabled = true;
 
@@ -34,6 +41,8 @@ public class AIObserver : MonoBehaviour
 
     public void SetPatrolAI()
     {
+        _navMeshAgent.speed = _patrolSpeed;
+
         _monkey.GetComponent<MonkeyAIPatrol>().enabled = true;
         _monkey.GetComponent<MonkeyAICollect>().enabled = false;
     }

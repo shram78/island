@@ -13,7 +13,10 @@ public class CraftZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
+        if (other.gameObject.TryGetComponent(out Monkey monkey))
+            return;
+
+        else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
         {
             _playerAnimator.ShakingTree();
 
@@ -25,7 +28,10 @@ public class CraftZone : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
+        if (other.gameObject.TryGetComponent(out Monkey monkey))
+            return;
+
+        else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
         {
             _playerAnimator.StopingShakeTree();
 
@@ -37,14 +43,10 @@ public class CraftZone : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
-        {
-            _progressBar.SetValueInstantly(_logSpawner._currentTime);
+        if (other.gameObject.TryGetComponent(out Monkey monkey))
+            return;
 
-            //if (_logSpawner._numberPrefab == 0)
-            //{
-            //    _playerAnimator.StopingShakeTree();
-            //}
-        }
+        else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
+            _progressBar.SetValueInstantly(_logSpawner._currentTime);
     }
 }
