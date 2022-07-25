@@ -10,8 +10,8 @@ public class AIObserver : MonoBehaviour
     [SerializeField] private Zone _razerZone;
     [SerializeField] private float _timeReturnToPatrol = 60f;
     [SerializeField] private NavMeshAgent _navMeshAgent;
-    [SerializeField] private float _patrolSpeed = 1.5f;
-    [SerializeField] private float _collecetedSpeed = 6f;
+    [SerializeField] private float _patrolSpeed;
+    [SerializeField] private float _collecetedSpeed;
 
 
     private void OnEnable()

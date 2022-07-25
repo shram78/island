@@ -14,6 +14,7 @@ public class LogSpawner : MonoBehaviour
     [SerializeField] private GameObject[] _branchInStocks;
     [SerializeField] private Vector3 _jumpVectorPrefab;
     [SerializeField] private float _timeToMovePrefab = 3;
+    [SerializeField] private ParticleSystem _spawnPaticle;
 
     public int _numberPrefab = 0;
     private CollectableItem _currentPrefab;
@@ -85,6 +86,8 @@ public class LogSpawner : MonoBehaviour
 
                     _zone.AddNumber();
                     MoveToDelivery(_currentPrefab);
+
+                    _spawnPaticle.Play();
 
                     break;
                 }

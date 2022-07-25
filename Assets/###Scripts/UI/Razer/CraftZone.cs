@@ -33,7 +33,7 @@ public class CraftZone : MonoBehaviour
 
         else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
         {
-            _playerAnimator.StopingShakeTree();
+            // _playerAnimator.StopingShakeTree();
 
             Enter?.Invoke(false);
 

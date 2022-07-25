@@ -6,8 +6,7 @@ using UnityEngine;
 
 public class PalmAnimator : MonoBehaviour
 {
-    private const string ShakeTree = "ShakeTree";
-    private const string StopShakeTree = "StopShakeTree";
+    private const string IsPlayerWork = "IsPlayerWork";
 
     private Animator _animator;
 
@@ -18,11 +17,11 @@ public class PalmAnimator : MonoBehaviour
 
     public void ShakingTree()
     {
-         _animator.SetTrigger(ShakeTree);
+        _animator.SetBool(IsPlayerWork, true);
     }
 
     public void StopingShakeTree()
     {
-        _animator.SetTrigger(StopShakeTree);
+        _animator.SetBool(IsPlayerWork, false);
     }
 }

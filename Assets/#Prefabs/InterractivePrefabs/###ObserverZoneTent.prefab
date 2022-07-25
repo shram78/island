@@ -30227,7 +30227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _zoneClosed: {fileID: 8531635424670112940}
-  _zoneOpened: {fileID: 0}
+  _zoneOpened: {fileID: 1964941585035345914}
   _heightToUp: 3
   _timeToUp: 0.5
 --- !u!1 &8531635424118899735
@@ -35733,7 +35733,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'drop tresh
+  m_text: 'stay to drop tresh
 
 '
   m_isRightToLeft: 0
@@ -35798,7 +35798,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 93.31866, y: 17.44679, z: 78.53253, w: 17.621696}
+  m_margin: {x: 93.31866, y: 17.44679, z: 73.48707, w: 17.621696}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

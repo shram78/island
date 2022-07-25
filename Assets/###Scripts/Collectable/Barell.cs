@@ -7,15 +7,11 @@ using UnityEngine;
 
 public class Barell : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem _smokeSpawnParticle;
-
     private Rigidbody _rigidbody;
     private CapsuleCollider _collider;
 
     private void Start()
     {
-        _smokeSpawnParticle.Play();
-
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<CapsuleCollider>();
 

@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private ShakeTreeZone _shakeTreeZone;
     [SerializeField] private float _currentDdelaySpawn = 10;
     [SerializeField] private float _delayManualSpawn = 2;
+    [SerializeField] private ParticleSystem _spawnPaticle;
 
     private float _delayAutoSpawn;
 
@@ -75,6 +76,8 @@ public class Spawner : MonoBehaviour
                     _numberClosedPoints++;
 
                     AddPrefab(-1);
+
+                    _spawnPaticle.Play();
 
                     break;
                 }
