@@ -19,14 +19,14 @@ public class Branch : MonoBehaviour
         StartCoroutine(StartTimer());
     }
 
-    private IEnumerator StartTimer()
+    protected virtual IEnumerator StartTimer()
     {
         yield return new WaitForSeconds(2f);
 
         SetRigidbody();
     }
 
-    private void SetRigidbody()
+    protected void SetRigidbody()
     {
         _rigidbody.isKinematic = true;
         _collider.isTrigger = true;
