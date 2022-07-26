@@ -44,7 +44,7 @@ public class LevelComlete : MonoBehaviour
         playrsBag.transform.SetParent(transform);
         _confettyParticle.Play();
         _raftRoot.transform.DOMove(_arivvedPoint.position, 30f);
-        _sail.transform.DOScaleY(1, 5);
+        _sail.transform.DOScaleY(1, 10);
         SetNewCamera();
         _animator.Dance();
     }
