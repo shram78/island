@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1222193110249488892}
   - component: {fileID: 8056335600337484254}
   m_Layer: 0
-  m_Name: BtanchPrefab
+  m_Name: BranchPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +54,7 @@ MeshRenderer:
   m_GameObject: {fileID: 3475811273709006593}
   m_Enabled: 0
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isBranch: 1
-  _isFiol: 0
-  _isGreen: 0
-  _isBlue: 0
+  _isLog: 0
+  _isBarrel: 0
+  _isBanana: 0
 --- !u!54 &7822825424983279500
 Rigidbody:
   m_ObjectHideFlags: 0

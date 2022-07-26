@@ -6,9 +6,12 @@ using UnityEngine;
 public class PlayerAnimator : MonoBehaviour
 {
     [SerializeField] private FloatingJoystick _joystick;
+    [SerializeField] private ParticleSystem _logParticle;
 
     private const string Speed = "Speed";
     private const string ShakeTree = "ShakeTree";
+    private const string Work = "Work";
+
     private const string Dancing = "Dancing";
 
 
@@ -41,14 +44,24 @@ public class PlayerAnimator : MonoBehaviour
     {
         _animator.SetFloat(Speed, 0);
     }
-    
+
     public void ShakingTree()
     {
         _animator.SetTrigger(ShakeTree);
     }
 
-      public void Dance()
+     public void Working()
+    {
+        _animator.SetTrigger(Work);
+    }
+
+    public void Dance()
     {
         _animator.SetTrigger(Dancing);
+    }
+
+    public void PlayParticleLog()
+    {
+        _logParticle.Play();
     }
 }

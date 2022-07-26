@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelObserver : MonoBehaviour
+public class FirstLevelObserver : MonoBehaviour
 {
     [SerializeField] private Zone _firstPalm;
     [SerializeField] private Zone _tent;
@@ -10,7 +9,7 @@ public class LevelObserver : MonoBehaviour
     [SerializeField] private Zone _water;
     [SerializeField] private GameObject _tentObserved;
     [SerializeField] private GameObject _razerObserver;
-    [SerializeField] private GameObject _secondPalm;
+    // [SerializeField] private GameObject _secondPalm;
     [SerializeField] private GameObject _waterObserver;
     [SerializeField] private GameObject _joistick;
     [SerializeField] private GameObject _raftObserver;
@@ -20,7 +19,7 @@ public class LevelObserver : MonoBehaviour
         _firstPalm.Opened += OnOpenedTent;
         _tent.Opened += OnOpenedRazer;
         _razer.Opened += OnOpenedWater;
-        _water.Opened += OnOpenedSecondPalm;
+        // _water.Opened += OnOpenedSecondPalm;
     }
 
     private void Start()
@@ -33,7 +32,7 @@ public class LevelObserver : MonoBehaviour
         _firstPalm.Opened -= OnOpenedTent;
         _tent.Opened -= OnOpenedRazer;
         _razer.Opened -= OnOpenedWater;
-        _water.Opened -= OnOpenedSecondPalm;
+        // _water.Opened -= OnOpenedSecondPalm;
     }
 
     private void OnOpenedTent()
@@ -52,10 +51,10 @@ public class LevelObserver : MonoBehaviour
         _waterObserver.gameObject.SetActive(true);
     }
 
-    private void OnOpenedSecondPalm()
-    {
-        _secondPalm.gameObject.SetActive(true);
-    }
+    // private void OnOpenedSecondPalm()
+    // {
+    //     _secondPalm.gameObject.SetActive(true);
+    // }
 
     private IEnumerator SwitchJoistickTimer()
     {
