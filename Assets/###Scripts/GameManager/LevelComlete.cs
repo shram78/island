@@ -20,7 +20,7 @@ public class LevelComlete : MonoBehaviour
 
     private bool _isFoofCollected = false;
 
-    public void SetFoofCollected()
+    public void SetFoodCollected()
     {
         _isFoofCollected = true;
         _UIFood.gameObject.SetActive(false);
@@ -32,11 +32,11 @@ public class LevelComlete : MonoBehaviour
         if (_isFoofCollected)
         {
             if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
-                ArriveFromIsland(playrsBag);
+                LeaveTheIsland(playrsBag);
         }
     }
 
-    private void ArriveFromIsland(PlayrsBag playrsBag)
+    private void LeaveTheIsland(PlayrsBag playrsBag)
     {
         DisableJoystickMovement();
 

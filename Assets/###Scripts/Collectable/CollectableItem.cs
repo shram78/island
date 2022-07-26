@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using DG.Tweening;
 
 public class CollectableItem : MonoBehaviour
 {

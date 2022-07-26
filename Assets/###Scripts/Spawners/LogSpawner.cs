@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using DG.Tweening;
@@ -12,7 +11,6 @@ public class LogSpawner : MonoBehaviour
     [SerializeField] private Zone _zone;
     [SerializeField] private CraftZone _craftZone;
     [SerializeField] private GameObject[] _branchInStocks;
-    [SerializeField] private Vector3 _jumpVectorPrefab;
     [SerializeField] private float _timeToMovePrefab = 3;
     [SerializeField] private ParticleSystem _spawnPaticle;
 
@@ -23,7 +21,6 @@ public class LogSpawner : MonoBehaviour
     private float _delaySpawn = 2f;
 
     public float _currentTime { get; private set; }
-
     public int CurrentCLosedPoint { get; private set; }
 
     private void OnEnable()
@@ -31,12 +28,13 @@ public class LogSpawner : MonoBehaviour
         CurrentCLosedPoint = _spawnPoints.Length - _numberClosedPoints;
 
         _craftZone.Enter += SetInzoneStatus;
-        _zone.PrefabMoveStock += ShowBranchnStock;
+        _zone.DropPrefabInStock += ShowBranchnStock;
     }
+
     private void OnDisable()
     {
         _craftZone.Enter -= SetInzoneStatus;
-        _zone.PrefabMoveStock -= ShowBranchnStock;
+        _zone.DropPrefabInStock -= ShowBranchnStock;
     }
 
     private void SetInzoneStatus(bool isInZone)
@@ -77,7 +75,6 @@ public class LogSpawner : MonoBehaviour
 
                     _currentPrefab.InitSpawnPoint(_spawnPoints[i]);
 
-                    HideBranchnStock(_numberClosedPoints);
 
                     _currentPrefab.Selected += OnSelected;
                     _numberClosedPoints++;
@@ -89,6 +86,7 @@ public class LogSpawner : MonoBehaviour
 
                     _spawnPaticle.Play();
 
+                    HideBranchnStock(_numberClosedPoints);
                     break;
                 }
             }
@@ -121,17 +119,7 @@ public class LogSpawner : MonoBehaviour
 
     private void HideBranchnStock(int currentNumber)
     {
-        GameObject log = _branchInStocks.FirstOrDefault(p => p.activeSelf == true);
-
-        Vector3 startPosition = log.transform.position;
-        log.transform.DOLocalJump(_jumpVectorPrefab, 1, 1, 1);
-        StartCoroutine(StartTimer(log, startPosition));
-    }
-
-    private IEnumerator StartTimer(GameObject log, Vector3 startPosition)
-    {
-        yield return new WaitForSeconds(1f);
-        log.transform.position = startPosition;
-        log.gameObject.SetActive(false);
+        for (int i = 0; i < currentNumber; i++)
+            _branchInStocks[i].gameObject.SetActive(false);
     }
 }

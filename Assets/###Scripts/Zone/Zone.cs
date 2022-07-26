@@ -23,8 +23,8 @@ public class Zone : MonoBehaviour
     private int _maxBranch;
 
     public UnityAction Opened;
-    public UnityAction<int> PrefabMoveStock;
     public UnityAction<int> BarrelsDropToPalm;
+    public UnityAction<int> DropPrefabInStock;
 
 
     public int CountPalm => _countBranch;
@@ -78,21 +78,6 @@ public class Zone : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.TryGetComponent(out PlayrsBag bag))
-        {
-            if (_isBranch)
-                PrefabMoveStock?.Invoke(_currentNumBranch);
-            if (_isLog)
-                PrefabMoveStock?.Invoke(_currentNumBranch);
-            if (_isBarrel)
-                PrefabMoveStock?.Invoke(_currentNumBranch);
-            if (_isBanana)
-                PrefabMoveStock?.Invoke(_currentNumBranch);
-        }
-    }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.TryGetComponent(out PlayrsBag bug))
@@ -119,6 +104,8 @@ public class Zone : MonoBehaviour
 
         if (_numberBranch != null)
             ChangedCounter();
+
+        DropPrefabInStock?.Invoke(_currentNumBranch);
     }
 
     public void AddNumber()

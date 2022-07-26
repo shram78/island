@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -29,6 +27,7 @@ public class AIObserver : MonoBehaviour
         _monkey.gameObject.SetActive(true);
 
     }
+    
     public void SetCollectAI()
     {
         _navMeshAgent.speed = _collecetedSpeed;

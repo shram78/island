@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerWork : MonoBehaviour
@@ -9,7 +7,6 @@ public class PlayerWork : MonoBehaviour
     public void ShowLog()
     {
         _log.gameObject.SetActive(true);
-
     }
 
     public void HideLog()

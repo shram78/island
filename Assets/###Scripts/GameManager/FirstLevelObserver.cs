@@ -9,7 +9,6 @@ public class FirstLevelObserver : MonoBehaviour
     [SerializeField] private Zone _water;
     [SerializeField] private GameObject _tentObserved;
     [SerializeField] private GameObject _razerObserver;
-    // [SerializeField] private GameObject _secondPalm;
     [SerializeField] private GameObject _waterObserver;
     [SerializeField] private GameObject _joistick;
     [SerializeField] private GameObject _raftObserver;
@@ -19,7 +18,6 @@ public class FirstLevelObserver : MonoBehaviour
         _firstPalm.Opened += OnOpenedTent;
         _tent.Opened += OnOpenedRazer;
         _razer.Opened += OnOpenedWater;
-        // _water.Opened += OnOpenedSecondPalm;
     }
 
     private void Start()
@@ -32,7 +30,6 @@ public class FirstLevelObserver : MonoBehaviour
         _firstPalm.Opened -= OnOpenedTent;
         _tent.Opened -= OnOpenedRazer;
         _razer.Opened -= OnOpenedWater;
-        // _water.Opened -= OnOpenedSecondPalm;
     }
 
     private void OnOpenedTent()
@@ -50,11 +47,6 @@ public class FirstLevelObserver : MonoBehaviour
     {
         _waterObserver.gameObject.SetActive(true);
     }
-
-    // private void OnOpenedSecondPalm()
-    // {
-    //     _secondPalm.gameObject.SetActive(true);
-    // }
 
     private IEnumerator SwitchJoistickTimer()
     {

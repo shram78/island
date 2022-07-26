@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -20,7 +19,7 @@ public class Barell : MonoBehaviour
 
     private IEnumerator StartTimer()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.2f);
 
         SetRigidbody();
     }
