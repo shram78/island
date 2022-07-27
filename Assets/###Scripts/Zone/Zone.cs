@@ -6,6 +6,7 @@ using System.Collections;
 public class Zone : MonoBehaviour
 {
     [SerializeField] private ItemType _type;
+    [SerializeField] private bool _isTrashCan;
 
     [SerializeField] private Transform _pointToMove;
     [SerializeField] private TMP_Text _numberBranch;
@@ -39,6 +40,12 @@ public class Zone : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out PlayrsBag bag))
         {
+            if (_isTrashCan)
+            {
+                bag.TrashBag(_pointToMove, this);
+                return;
+            }
+
             if (_stacking == null)
                 _stacking = StartCoroutine(Stacking(bag));
         }

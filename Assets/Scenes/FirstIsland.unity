@@ -9489,7 +9489,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1440420383}
-  m_LocalRotation: {x: 0.18107519, y: -0.13559298, z: 0.025214383, w: 0.97375077}
+  m_LocalRotation: {x: 0.18107517, y: -0.13559301, z: 0.025214387, w: 0.97375077}
   m_LocalPosition: {x: -2.559988, y: 8.660999, z: -46.484}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -15455,6 +15455,10 @@ PrefabInstance:
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 963722776}
+    - target: {fileID: 897685890, guid: 72520948686023c45983a24d4965ce4d, type: 3}
+      propertyPath: _countBranch
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1234881035, guid: 72520948686023c45983a24d4965ce4d, type: 3}
       propertyPath: _type
       value: 2
@@ -15463,6 +15467,10 @@ PrefabInstance:
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 963722776}
+    - target: {fileID: 1234881035, guid: 72520948686023c45983a24d4965ce4d, type: 3}
+      propertyPath: _countBranch
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1483070453, guid: 72520948686023c45983a24d4965ce4d, type: 3}
       propertyPath: _type
       value: 1
@@ -15471,10 +15479,22 @@ PrefabInstance:
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 963722776}
+    - target: {fileID: 1483070453, guid: 72520948686023c45983a24d4965ce4d, type: 3}
+      propertyPath: _countBranch
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1660724444, guid: 72520948686023c45983a24d4965ce4d, type: 3}
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 963722776}
+    - target: {fileID: 1660724444, guid: 72520948686023c45983a24d4965ce4d, type: 3}
+      propertyPath: _isTrashCan
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1660724444, guid: 72520948686023c45983a24d4965ce4d, type: 3}
+      propertyPath: _countBranch
+      value: 900
+      objectReference: {fileID: 0}
     - target: {fileID: 1720206285, guid: 72520948686023c45983a24d4965ce4d, type: 3}
       propertyPath: m_Camera
       value: 

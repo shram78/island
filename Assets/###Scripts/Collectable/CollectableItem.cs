@@ -74,6 +74,7 @@ public abstract class CollectableItem : MonoBehaviour
 
     private void SetRigidbody()
     {
+        _rigidbody.useGravity = false;
         _rigidbody.isKinematic = true;
         _physicalCollider.enabled = false;
         _rigidbody.velocity = Vector3.zero;

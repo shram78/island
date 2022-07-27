@@ -71,7 +71,6 @@ public class PlayrsBag : MonoBehaviour
 
     public void DropItem(int count, Transform pointMove, Zone zone, ItemType type)
     {
-        Debug.Log(_isDropping.ToString());
 
         if (count > 0)
         {
@@ -97,6 +96,11 @@ public class PlayrsBag : MonoBehaviour
         }
     }
 
+    public void TrashBag(Transform pointMove, Zone zone)
+    {
+        StartCoroutine(TrashingItem(pointMove, zone));
+    }
+
     private IEnumerator DroppingItem(int count, Transform pointMove, Zone zone, ItemType type)
     {
         for (int j = 0; j < count; j++)
@@ -107,21 +111,7 @@ public class PlayrsBag : MonoBehaviour
                 {
                     if (_collectableItems[i].Type == type)
                     {
-                        Debug.Log(j.ToString());
-                        _collectableItems[i].transform.parent = null;
-
-                        Sequence sequence = DOTween.Sequence();
-
-                        _collectableItems[i].transform.DORotate(new Vector3(180, 0, 0), 0.5f).SetEase(Ease.Linear);
-                        sequence.Append(_collectableItems[i].transform.DOMove(_movePathPointTwo.transform.position, 0.2f).SetEase(Ease.Linear));
-                        sequence.Append(_collectableItems[i].transform.DOMove(_movePathPointOne.transform.position, 0.1f).SetEase(Ease.Linear));
-                        sequence.Append(_collectableItems[i].transform.DOMove(pointMove.position, 0.2f).SetEase(Ease.Linear));
-
-                        StartCoroutine(StartNumberRemove(zone, _collectableItems[i]));
-
-                        RemoveElement(i);
-
-                        StartCoroutine(DisplaceElement());
+                        RemoveItem(_collectableItems[i], pointMove, zone, i);
 
                         break;
                     }
@@ -133,6 +123,34 @@ public class PlayrsBag : MonoBehaviour
 
         _isDropping = false;
         _droppingItem = null;
+    }
+
+    private IEnumerator TrashingItem(Transform pointMove, Zone zone)
+    {
+        for (int i = _collectableItems.Count - 1; i >= 0; i--)
+        {
+            RemoveItem(_collectableItems[i], pointMove, zone, i);
+
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+    private void RemoveItem(CollectableItem item, Transform pointMove, Zone zone, int index)
+    {
+        item.transform.parent = null;
+
+        Sequence sequence = DOTween.Sequence();
+
+        item.transform.DORotate(new Vector3(180, 0, 0), 0.5f).SetEase(Ease.Linear);
+        sequence.Append(item.transform.DOMove(_movePathPointTwo.transform.position, 0.2f).SetEase(Ease.Linear));
+        sequence.Append(item.transform.DOMove(_movePathPointOne.transform.position, 0.1f).SetEase(Ease.Linear));
+        sequence.Append(item.transform.DOMove(pointMove.position, 0.2f).SetEase(Ease.Linear));
+
+        StartCoroutine(StartNumberRemove(zone, item));
+
+        RemoveElement(index);
+
+        StartCoroutine(DisplaceElement());
     }
 
     private IEnumerator StartNumberRemove(Zone zone, CollectableItem collectableItem)
