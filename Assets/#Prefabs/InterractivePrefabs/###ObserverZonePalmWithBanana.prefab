@@ -315,7 +315,6 @@ MonoBehaviour:
   - {fileID: 4379136640671128926}
   - {fileID: 4379136641565118534}
   - {fileID: 4379136641421367000}
-  _jumpVectorPrefab: {x: 0, y: 0, z: 0}
   _timeToMovePrefab: 0
   _spawnPaticle: {fileID: 3949972326345861829}
   _numberPrefab: 0
@@ -650,7 +649,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4905888777435467}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.39, y: -0.15, z: 16.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -28764,6 +28763,7 @@ MonoBehaviour:
   _playerAnimator: {fileID: 0}
   _progressBar: {fileID: 0}
   _logSpawner: {fileID: 398233383310778870}
+  _joystick: {fileID: 0}
 --- !u!114 &6422383107490521954
 MonoBehaviour:
   m_ObjectHideFlags: 0
