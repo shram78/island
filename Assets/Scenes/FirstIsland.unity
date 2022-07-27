@@ -5729,10 +5729,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 927889011}
-  - component: {fileID: 927889015}
   - component: {fileID: 927889014}
   - component: {fileID: 927889013}
   - component: {fileID: 927889012}
+  - component: {fileID: 927889016}
   m_Layer: 0
   m_Name: BarrelPrefab_3
   m_TagString: Untagged
@@ -5768,6 +5768,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d6ba60afca6ef45abaecd0617fe679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 2
+  _timeOfPhysicalMove: 0
+  _triggerCollider: {fileID: 927889016}
+  _physicalCollider: {fileID: 927889013}
 --- !u!136 &927889013
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5798,22 +5802,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &927889015
-MonoBehaviour:
+--- !u!65 &927889016
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 927889010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ce1a710cc21f444ba3d303ac2b67335, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isBranch: 0
-  _isLog: 0
-  _isBarrel: 1
-  _isBanana: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &928198373
 GameObject:
   m_ObjectHideFlags: 0
@@ -6392,10 +6393,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1038340351}
-  - component: {fileID: 1038340355}
   - component: {fileID: 1038340354}
   - component: {fileID: 1038340353}
   - component: {fileID: 1038340352}
+  - component: {fileID: 1038340356}
   m_Layer: 0
   m_Name: BarrelPrefab_5
   m_TagString: Untagged
@@ -6431,6 +6432,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d6ba60afca6ef45abaecd0617fe679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 2
+  _timeOfPhysicalMove: 0
+  _triggerCollider: {fileID: 1038340356}
+  _physicalCollider: {fileID: 1038340353}
 --- !u!136 &1038340353
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6461,22 +6466,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1038340355
-MonoBehaviour:
+--- !u!65 &1038340356
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038340350}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ce1a710cc21f444ba3d303ac2b67335, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isBranch: 0
-  _isLog: 0
-  _isBarrel: 1
-  _isBanana: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1041168679
 GameObject:
   m_ObjectHideFlags: 3
@@ -6944,10 +6946,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1085110751}
-  - component: {fileID: 1085110755}
   - component: {fileID: 1085110754}
   - component: {fileID: 1085110753}
   - component: {fileID: 1085110752}
+  - component: {fileID: 1085110756}
   m_Layer: 0
   m_Name: BarrelPrefab_1
   m_TagString: Untagged
@@ -6983,6 +6985,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d6ba60afca6ef45abaecd0617fe679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 2
+  _timeOfPhysicalMove: 0
+  _triggerCollider: {fileID: 1085110756}
+  _physicalCollider: {fileID: 1085110753}
 --- !u!136 &1085110753
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7013,22 +7019,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1085110755
-MonoBehaviour:
+--- !u!65 &1085110756
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085110750}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ce1a710cc21f444ba3d303ac2b67335, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isBranch: 0
-  _isLog: 0
-  _isBarrel: 1
-  _isBanana: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1099719527
 GameObject:
   m_ObjectHideFlags: 0
@@ -8826,10 +8829,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1302807207}
-  - component: {fileID: 1302807211}
   - component: {fileID: 1302807210}
   - component: {fileID: 1302807209}
   - component: {fileID: 1302807208}
+  - component: {fileID: 1302807212}
   m_Layer: 0
   m_Name: BarrelPrefab_4
   m_TagString: Untagged
@@ -8865,6 +8868,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d6ba60afca6ef45abaecd0617fe679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 2
+  _timeOfPhysicalMove: 0
+  _triggerCollider: {fileID: 1302807212}
+  _physicalCollider: {fileID: 1302807209}
 --- !u!136 &1302807209
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8895,22 +8902,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1302807211
-MonoBehaviour:
+--- !u!65 &1302807212
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1302807206}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ce1a710cc21f444ba3d303ac2b67335, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isBranch: 0
-  _isLog: 0
-  _isBarrel: 1
-  _isBanana: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1313317554 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 107932317219711732, guid: 217a65917b266c344969ee27cd22d58b, type: 3}
@@ -9485,7 +9489,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1440420383}
-  m_LocalRotation: {x: 0.18107517, y: -0.13559301, z: 0.025214387, w: 0.97375077}
+  m_LocalRotation: {x: 0.18107519, y: -0.13559298, z: 0.025214383, w: 0.97375077}
   m_LocalPosition: {x: -2.559988, y: 8.660999, z: -46.484}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12291,10 +12295,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1864844187}
-  - component: {fileID: 1864844191}
   - component: {fileID: 1864844190}
   - component: {fileID: 1864844189}
   - component: {fileID: 1864844188}
+  - component: {fileID: 1864844192}
   m_Layer: 0
   m_Name: BarrelPrefab_2
   m_TagString: Untagged
@@ -12330,6 +12334,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d6ba60afca6ef45abaecd0617fe679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 2
+  _timeOfPhysicalMove: 0
+  _triggerCollider: {fileID: 1864844192}
+  _physicalCollider: {fileID: 1864844189}
 --- !u!136 &1864844189
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12360,22 +12368,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1864844191
-MonoBehaviour:
+--- !u!65 &1864844192
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864844186}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ce1a710cc21f444ba3d303ac2b67335, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isBranch: 0
-  _isLog: 0
-  _isBarrel: 1
-  _isBanana: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1867313025
 GameObject:
   m_ObjectHideFlags: 0
@@ -13548,6 +13553,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 79610571955920216, guid: ef6e326d5d6b63740ab67d170d252053, type: 3}
+      propertyPath: _joystick
+      value: 
+      objectReference: {fileID: 963722776}
     - target: {fileID: 79610572310600033, guid: ef6e326d5d6b63740ab67d170d252053, type: 3}
       propertyPath: m_Camera
       value: 
@@ -13625,6 +13634,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1716517499359729920, guid: ef6e326d5d6b63740ab67d170d252053, type: 3}
+      propertyPath: _type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716517499359729920, guid: ef6e326d5d6b63740ab67d170d252053, type: 3}
+      propertyPath: _joystick
+      value: 
+      objectReference: {fileID: 963722776}
+    - target: {fileID: 1716517499359729920, guid: ef6e326d5d6b63740ab67d170d252053, type: 3}
       propertyPath: _countBranch
       value: 2
       objectReference: {fileID: 0}
@@ -13648,6 +13665,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4550272196004001257, guid: ef6e326d5d6b63740ab67d170d252053, type: 3}
+      propertyPath: _type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4550272196004001257, guid: ef6e326d5d6b63740ab67d170d252053, type: 3}
+      propertyPath: _joystick
+      value: 
+      objectReference: {fileID: 963722776}
     - target: {fileID: 4711782836180084143, guid: ef6e326d5d6b63740ab67d170d252053, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -13798,10 +13823,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 194677457822465913, guid: 71c85802be0c9414f9b480d6658d33d4, type: 3}
+      propertyPath: _joystick
+      value: 
+      objectReference: {fileID: 963722776}
     - target: {fileID: 194677457822465914, guid: 71c85802be0c9414f9b480d6658d33d4, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 194677457822465915, guid: 71c85802be0c9414f9b480d6658d33d4, type: 3}
+      propertyPath: _collectableItem
+      value: 
+      objectReference: {fileID: 1222193110249488892, guid: 2371c1a98f6607247a4614d79e206b20, type: 3}
+    - target: {fileID: 194677458353554231, guid: 71c85802be0c9414f9b480d6658d33d4, type: 3}
+      propertyPath: _type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 194677458353554231, guid: 71c85802be0c9414f9b480d6658d33d4, type: 3}
+      propertyPath: _joystick
+      value: 
+      objectReference: {fileID: 963722776}
     - target: {fileID: 194677458360934807, guid: 71c85802be0c9414f9b480d6658d33d4, type: 3}
       propertyPath: _joystick
       value: 
@@ -15290,6 +15331,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8286517184296826874, guid: fbef5842469a3cf469df2468d3e9255f, type: 3}
+      propertyPath: _joystick
+      value: 
+      objectReference: {fileID: 963722776}
+    - target: {fileID: 8286517184296826874, guid: fbef5842469a3cf469df2468d3e9255f, type: 3}
       propertyPath: _countBranch
       value: 2
       objectReference: {fileID: 0}
@@ -15358,6 +15403,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8286517185715367190, guid: fbef5842469a3cf469df2468d3e9255f, type: 3}
+      propertyPath: _joystick
+      value: 
+      objectReference: {fileID: 963722776}
+    - target: {fileID: 8286517185715367190, guid: fbef5842469a3cf469df2468d3e9255f, type: 3}
       propertyPath: _countBranch
       value: 2
       objectReference: {fileID: 0}
@@ -15365,6 +15414,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8604194974572579956, guid: fbef5842469a3cf469df2468d3e9255f, type: 3}
+      propertyPath: _prefabSpawm
+      value: 
+      objectReference: {fileID: 4067087126947879010, guid: 72eaa749ba143b442a62fc565eabbcb8, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbef5842469a3cf469df2468d3e9255f, type: 3}
 --- !u!33 &2697743916448868863
@@ -15395,13 +15448,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 963194227}
     - target: {fileID: 897685890, guid: 72520948686023c45983a24d4965ce4d, type: 3}
+      propertyPath: _type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 897685890, guid: 72520948686023c45983a24d4965ce4d, type: 3}
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 963722776}
     - target: {fileID: 1234881035, guid: 72520948686023c45983a24d4965ce4d, type: 3}
+      propertyPath: _type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234881035, guid: 72520948686023c45983a24d4965ce4d, type: 3}
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 963722776}
+    - target: {fileID: 1483070453, guid: 72520948686023c45983a24d4965ce4d, type: 3}
+      propertyPath: _type
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1483070453, guid: 72520948686023c45983a24d4965ce4d, type: 3}
       propertyPath: _joystick
       value: 
@@ -15414,6 +15479,18 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 1964941585035345914, guid: 72520948686023c45983a24d4965ce4d, type: 3}
+      propertyPath: _type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964941585035345914, guid: 72520948686023c45983a24d4965ce4d, type: 3}
+      propertyPath: _joystick
+      value: 
+      objectReference: {fileID: 963722776}
+    - target: {fileID: 1964941585035345914, guid: 72520948686023c45983a24d4965ce4d, type: 3}
+      propertyPath: _countBranch
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8531635424093601665, guid: 72520948686023c45983a24d4965ce4d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -15462,6 +15539,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: '###ObserverZoneTent'
       objectReference: {fileID: 0}
+    - target: {fileID: 8531635424670112940, guid: 72520948686023c45983a24d4965ce4d, type: 3}
+      propertyPath: _type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8531635424670112940, guid: 72520948686023c45983a24d4965ce4d, type: 3}
+      propertyPath: _joystick
+      value: 
+      objectReference: {fileID: 963722776}
     - target: {fileID: 8531635424670112940, guid: 72520948686023c45983a24d4965ce4d, type: 3}
       propertyPath: _countBranch
       value: 2
@@ -15985,6 +16070,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6427074864578141789, guid: 85591ebfc6b16f545ae17b593a4eea15, type: 3}
+      propertyPath: _type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6427074864578141789, guid: 85591ebfc6b16f545ae17b593a4eea15, type: 3}
+      propertyPath: _joystick
+      value: 
+      objectReference: {fileID: 963722776}
+    - target: {fileID: 6427074864578141789, guid: 85591ebfc6b16f545ae17b593a4eea15, type: 3}
       propertyPath: _countBranch
       value: 2
       objectReference: {fileID: 0}
@@ -16011,6 +16104,10 @@ PrefabInstance:
     - target: {fileID: 6427074865996547248, guid: 85591ebfc6b16f545ae17b593a4eea15, type: 3}
       propertyPath: m_Center.z
       value: -1.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 6427074865996547249, guid: 85591ebfc6b16f545ae17b593a4eea15, type: 3}
+      propertyPath: _type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6427074865996547249, guid: 85591ebfc6b16f545ae17b593a4eea15, type: 3}
       propertyPath: _joystick
@@ -16076,6 +16173,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6676072211925870035, guid: 85591ebfc6b16f545ae17b593a4eea15, type: 3}
+      propertyPath: _prefabSpawm
+      value: 
+      objectReference: {fileID: 1566408510966437618, guid: 33e932e8b400e9948be81292f3327592, type: 3}
     - target: {fileID: 6676072211925870035, guid: 85591ebfc6b16f545ae17b593a4eea15, type: 3}
       propertyPath: _branchInStocks.Array.size
       value: 20

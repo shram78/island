@@ -14,12 +14,11 @@ public class PlayrsBag : MonoBehaviour
 
     private int _currentStackPoint = 0;
     private List<CollectableItem> _collectableItems;
-    private bool _isDrop;
+    private bool _isDropping = false;
 
-    private Coroutine StopDropBranch;
-    private Coroutine StopDropLog;
-    private Coroutine StopDropBarell;
-    private Coroutine StopDropBanana;
+    private Coroutine _droppingItem;
+
+    public bool IsDropping => _isDropping;
 
     private void Start()
     {
@@ -28,7 +27,6 @@ public class PlayrsBag : MonoBehaviour
 
     public void AddCoollectableItem(CollectableItem collectableItem)
     {
-        // if (_currentStackPoint < _stackPoints.Length)
         if (_currentStackPoint < _currentStackSize)
         {
             collectableItem.transform.SetParent(_bag.transform);
@@ -60,69 +58,56 @@ public class PlayrsBag : MonoBehaviour
 
     }
 
-    public void DropBranch(int count, Transform pointMove, Zone zone)
+    public bool IsContainItem(ItemType type)
     {
+        foreach (var item in _collectableItems)
+        {
+            if (item.Type == type)
+                return true;
+        }
+
+        return false;
+    }
+
+    public void DropItem(int count, Transform pointMove, Zone zone, ItemType type)
+    {
+        Debug.Log(_isDropping.ToString());
+
         if (count > 0)
         {
-            _isDrop = true;
-            StopDropBranch = StartCoroutine(StartBranchDrop(count, pointMove, zone));
+            if (_isDropping == false)
+            {
+                _isDropping = true;
+                _droppingItem = StartCoroutine(DroppingItem(count, pointMove, zone, type));
+            }
         }
     }
 
-    public void DropLog(int count, Transform pointMove, Zone zone)
+    public void StopDropItem(Zone zone)
     {
-        if (count > 0)
+        if (_isDropping == true)
         {
-            _isDrop = true;
-            StopDropLog = StartCoroutine(StartLogDrop(count, pointMove, zone));
+            if (_droppingItem != null)
+            {
+                StopCoroutine(_droppingItem);
+                _droppingItem = null;
+            }
+
+            _isDropping = false;
         }
     }
 
-    public void DropBarell(int count, Transform pointMove, Zone zone)
-    {
-        if (count > 0)
-        {
-            _isDrop = true;
-            StopDropBarell = StartCoroutine(StartBarrelDrop(count, pointMove, zone));
-        }
-    }
-
-    public void DropBanana(int count, Transform pointMove, Zone zone)
-    {
-        if (count > 0)
-        {
-            _isDrop = true;
-            StopDropBanana = StartCoroutine(StartBananaDrop(count, pointMove, zone));
-        }
-    }
-
-    public void StopDropCoroutine()
-    {
-        _isDrop = false;
-
-        if (StopDropBranch != null)
-            StopCoroutine(StopDropBranch);
-
-        if (StopDropLog != null)
-            StopCoroutine(StopDropLog);
-
-        if (StopDropBarell != null)
-            StopCoroutine(StopDropBarell);
-
-        if (StopDropBanana != null)
-            StopCoroutine(StopDropBanana);
-    }
-
-    private IEnumerator StartBranchDrop(int count, Transform pointMove, Zone zone)
+    private IEnumerator DroppingItem(int count, Transform pointMove, Zone zone, ItemType type)
     {
         for (int j = 0; j < count; j++)
         {
             for (int i = _collectableItems.Count - 1; i >= 0; i--)
             {
-                if (_isDrop)
+                if (_isDropping)
                 {
-                    if (_collectableItems[i].IsBranch)
+                    if (_collectableItems[i].Type == type)
                     {
+                        Debug.Log(j.ToString());
                         _collectableItems[i].transform.parent = null;
 
                         Sequence sequence = DOTween.Sequence();
@@ -142,115 +127,21 @@ public class PlayrsBag : MonoBehaviour
                     }
                 }
             }
+
             yield return new WaitForSeconds(0.2f);
         }
-    }
 
-    private IEnumerator StartLogDrop(int count, Transform pointMove, Zone zone)
-    {
-        for (int j = 0; j < count; j++)
-        {
-            for (int i = _collectableItems.Count - 1; i >= 0; i--)
-            {
-                if (_isDrop)
-                {
-                    if (_collectableItems[i].IsLog)
-                    {
-                        _collectableItems[i].transform.parent = null;
-
-                        Sequence sequence = DOTween.Sequence();
-
-                        _collectableItems[i].transform.DORotate(new Vector3(180, 0, 0), 0.5f).SetEase(Ease.Linear);
-                        sequence.Append(_collectableItems[i].transform.DOMove(_movePathPointTwo.transform.position, 0.2f).SetEase(Ease.Linear));
-                        sequence.Append(_collectableItems[i].transform.DOMove(_movePathPointOne.transform.position, 0.1f).SetEase(Ease.Linear));
-                        sequence.Append(_collectableItems[i].transform.DOMove(pointMove.position, 0.2f).SetEase(Ease.Linear));
-
-                        StartCoroutine(StartNumberRemove(zone, _collectableItems[i]));
-
-                        RemoveElement(i);
-
-                        StartCoroutine(DisplaceElement());
-
-                        break;
-                    }
-                }
-            }
-            yield return new WaitForSeconds(0.2f);
-        }
-    }
-
-    private IEnumerator StartBarrelDrop(int count, Transform pointMove, Zone zone)
-    {
-        for (int j = 0; j < count; j++)
-        {
-            for (int i = _collectableItems.Count - 1; i >= 0; i--)
-            {
-                if (_isDrop)
-                {
-                    if (_collectableItems[i].IsBarrel)
-                    {
-                        _collectableItems[i].transform.parent = null;
-
-                        Sequence sequence = DOTween.Sequence();
-
-                        _collectableItems[i].transform.DORotate(new Vector3(180, 0, 0), 0.5f).SetEase(Ease.Linear);
-                        sequence.Append(_collectableItems[i].transform.DOMove(_movePathPointTwo.transform.position, 0.2f).SetEase(Ease.Linear));
-                        sequence.Append(_collectableItems[i].transform.DOMove(_movePathPointOne.transform.position, 0.1f).SetEase(Ease.Linear));
-                        sequence.Append(_collectableItems[i].transform.DOMove(pointMove.position, 0.2f).SetEase(Ease.Linear));
-
-                        StartCoroutine(StartNumberRemove(zone, _collectableItems[i]));
-
-                        RemoveElement(i);
-
-                        StartCoroutine(DisplaceElement());
-
-                        break;
-                    }
-                }
-            }
-            yield return new WaitForSeconds(0.2f);
-        }
-    }
-
-    private IEnumerator StartBananaDrop(int count, Transform pointMove, Zone zone)
-    {
-        for (int j = 0; j < count; j++)
-        {
-            for (int i = _collectableItems.Count - 1; i >= 0; i--)
-            {
-                if (_isDrop)
-                {
-                    if (_collectableItems[i].IsBanana)
-                    {
-                        _collectableItems[i].transform.parent = null;
-
-                        Sequence sequence = DOTween.Sequence();
-
-                        _collectableItems[i].transform.DORotate(new Vector3(180, 0, 0), 0.5f).SetEase(Ease.Linear);
-                        sequence.Append(_collectableItems[i].transform.DOMove(_movePathPointTwo.transform.position, 0.2f).SetEase(Ease.Linear));
-                        sequence.Append(_collectableItems[i].transform.DOMove(_movePathPointOne.transform.position, 0.1f).SetEase(Ease.Linear));
-                        sequence.Append(_collectableItems[i].transform.DOMove(pointMove.position, 0.2f).SetEase(Ease.Linear));
-
-                        StartCoroutine(StartNumberRemove(zone, _collectableItems[i]));
-
-                        RemoveElement(i);
-
-                        StartCoroutine(DisplaceElement());
-
-                        break;
-                    }
-                }
-            }
-            yield return new WaitForSeconds(0.2f);
-        }
+        _isDropping = false;
+        _droppingItem = null;
     }
 
     private IEnumerator StartNumberRemove(Zone zone, CollectableItem collectableItem)
     {
+        zone.RemoveNumber();
+
         yield return new WaitForSeconds(0.5f);
 
         collectableItem.gameObject.SetActive(false);
-        zone.RemoveNumber();
     }
 
     private void RemoveElement(int index)
@@ -273,10 +164,10 @@ public class PlayrsBag : MonoBehaviour
     {
         foreach (var item in _collectableItems)
         {
-            if (item.IsBanana)
+            if (item.Type == ItemType.Banana)
             {
-                _isDrop = true;
-                StartCoroutine(StartBananaDrop(count, pointMove, zone));
+                _isDropping = true;
+                StartCoroutine(DroppingItem(count, pointMove, zone, ItemType.Banana));
                 return true;
             }
         }

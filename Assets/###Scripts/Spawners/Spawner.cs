@@ -25,6 +25,11 @@ public class Spawner : MonoBehaviour
         _shakeTreeZone.Enter += OnSetNewSppeed;
     }
 
+    private void OnDisable()
+    {
+        _shakeTreeZone.Enter -= OnSetNewSppeed;
+    }
+
     private void Start()
     {
         _delayAutoSpawn = _currentDdelaySpawn;
@@ -32,26 +37,19 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        //  if (_numberPrefab > 0)
+        if (_numberClosedPoints < _spawnPoints.Length)
         {
-            if (_numberClosedPoints < _spawnPoints.Length)
-            {
-                _currentTime += Time.deltaTime;
-            }
-
-            if (_currentTime >= _delayAutoSpawn)
-            {
-                _currentTime = 0;
-
-                SpawnPrefab();
-            }
+            _currentTime += Time.deltaTime;
         }
-        CurrentCLosedPoint = _spawnPoints.Length - _numberClosedPoints;
-    }
 
-    private void OnDisable()
-    {
-        _shakeTreeZone.Enter -= OnSetNewSppeed;
+        if (_currentTime >= _delayAutoSpawn)
+        {
+            _currentTime = 0;
+
+            SpawnPrefab();
+        }
+
+        CurrentCLosedPoint = _spawnPoints.Length - _numberClosedPoints;
     }
 
     private void SpawnPrefab()

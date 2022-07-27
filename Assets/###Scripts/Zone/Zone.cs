@@ -5,10 +5,7 @@ using System.Collections;
 
 public class Zone : MonoBehaviour
 {
-    [SerializeField] private bool _isBranch;
-    [SerializeField] private bool _isLog;
-    [SerializeField] private bool _isBarrel;
-    [SerializeField] private bool _isBanana;
+    [SerializeField] private ItemType _type;
 
     [SerializeField] private Transform _pointToMove;
     [SerializeField] private TMP_Text _numberBranch;
@@ -16,11 +13,11 @@ public class Zone : MonoBehaviour
 
     [SerializeField] private bool _isLogSpawner;
     [SerializeField] private LogSpawner _logSpawner;
-    [SerializeField] private bool _isThisDropZone;
     [SerializeField] private FloatingJoystick _joystick;
 
     private int _currentNumBranch = 0;
     private int _maxBranch;
+    private Coroutine _stacking;
 
     public UnityAction Opened;
     public UnityAction<int> BarrelsDropToPalm;
@@ -40,53 +37,56 @@ public class Zone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_isThisDropZone)
+        if (other.gameObject.TryGetComponent(out PlayrsBag bag))
         {
-            StartCoroutine(CheckJoistickBeforeDrop(other));
-        }
-
-        else if (other.gameObject.TryGetComponent(out PlayrsBag bag))
-        {
-            if (_isBranch)
-                bag.DropBranch(_countBranch, _pointToMove, this);
-            if (_isLog)
-                bag.DropLog(_countBranch, _pointToMove, this);
-            if (_isBarrel)
-                bag.DropBarell(_countBranch, _pointToMove, this);
-            if (_isBanana)
-                bag.DropBanana(_countBranch, _pointToMove, this);
-        }
-    }
-
-    private IEnumerator CheckJoistickBeforeDrop(Collider other)
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        if (_joystick.Horizontal == 0 || _joystick.Vertical == 0)
-        {
-            if (other.gameObject.TryGetComponent(out PlayrsBag bag))
-            {
-                if (_isBranch)
-                    bag.DropBranch(_countBranch, _pointToMove, this);
-                if (_isLog)
-                    bag.DropLog(_countBranch, _pointToMove, this);
-                if (_isBarrel)
-                    bag.DropBarell(_countBranch, _pointToMove, this);
-                if (_isBanana)
-                    bag.DropBanana(_countBranch, _pointToMove, this);
-            }
+            if (_stacking == null)
+                _stacking = StartCoroutine(Stacking(bag));
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.TryGetComponent(out PlayrsBag bug))
-            bug.StopDropCoroutine();
+        {
+            if (_stacking != null)
+            {
+                StopCoroutine(_stacking);
+                _stacking = null;
+            }
+
+            bug.StopDropItem(this);
+        }
     }
 
-    private void ChangedCounter()
+    private IEnumerator Stacking(PlayrsBag bag)
     {
-        _numberBranch.text = _currentNumBranch.ToString() + " / " + _maxBranch.ToString();
+
+        while (_currentNumBranch < _maxBranch)
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            if (_joystick.Direction != Vector2.zero)
+            {
+                yield return null;
+                continue;
+            }
+
+            if (bag.IsDropping)
+            {
+                yield return null;
+                continue;
+            }
+
+            if (!bag.IsContainItem(_type))
+            {
+                yield return null;
+                continue;
+            }
+
+            bag.DropItem(_countBranch, _pointToMove, this, _type);
+
+            yield return null;
+        }
     }
 
     public void RemoveNumber()
@@ -95,6 +95,12 @@ public class Zone : MonoBehaviour
         BarrelsDropToPalm?.Invoke(_countBranch);
 
         _currentNumBranch++;
+
+        if (_currentNumBranch == _maxBranch & _stacking != null)
+        {
+            StopCoroutine(_stacking);
+            _stacking = null;
+        }
 
         if (_isLogSpawner)
             _logSpawner.AddPrefab(1);
@@ -117,5 +123,10 @@ public class Zone : MonoBehaviour
         {
             ChangedCounter();
         }
+    }
+
+    private void ChangedCounter()
+    {
+        _numberBranch.text = _currentNumBranch.ToString() + " / " + _maxBranch.ToString();
     }
 }
