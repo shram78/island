@@ -24,10 +24,10 @@ public class ShakeTreeZone : MonoBehaviour
         if (other.gameObject.TryGetComponent(out Monkey monkey))
             return;
 
-        else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
+        if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
         {
             if (_working == null)
-                StartCoroutine(CheckJoistickAndStartAnimations(playrsBag));
+                _working = StartCoroutine(CheckJoistickAndStartAnimations(playrsBag));
         }
     }
 
@@ -36,7 +36,7 @@ public class ShakeTreeZone : MonoBehaviour
         if (other.gameObject.TryGetComponent(out Monkey monkey))
             return;
 
-        else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
+        if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
         {
             if (_working != null)
             {

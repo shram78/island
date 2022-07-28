@@ -9,10 +9,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform _viewToRotate;
 
     private Camera _camera;
+    private float _rotateDegrees;
+    private Quaternion _targetRotation;
+
+    private Vector3 _lookDirection => new Vector3(_joystick.Direction.x, 0f, _joystick.Direction.y);
 
     private void Start()
     {
         _camera = Camera.main;
+        _rotateDegrees = _camera.transform.rotation.eulerAngles.y;
     }
 
     private void FixedUpdate()
@@ -23,24 +28,10 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        transform.rotation = Quaternion.LookRotation(new Vector3(_joystick.Direction.x, 0f, _joystick.Direction.y), Vector3.up) * Quaternion.Euler(0, _camera.transform.rotation.eulerAngles.y, 0);
+        _targetRotation = Quaternion.LookRotation(_lookDirection, Vector3.up) * Quaternion.Euler(0, _rotateDegrees, 0);
 
-        _rigidbody.MovePosition(_rigidbody.position + (transform.forward * _moveSpeed * Time.fixedDeltaTime));
+        transform.rotation = Quaternion.Lerp(this.transform.rotation, _targetRotation, _rotationSpeed * Time.deltaTime);
 
-        //_rigidbody.velocity = (transform.forward * _joystick.Vertical + _joystick.Horizontal * transform.right) * _moveSpeed;
-
-        //Rotate();
-    }
-
-    private void Rotate()
-    {
-        if (_joystick.Vertical != 0 || _joystick.Horizontal != 0)
-        {
-            Quaternion lookRotation = Quaternion.LookRotation(_rigidbody.velocity);
-            lookRotation.x = 0;
-            lookRotation.z = 0;
-
-            _viewToRotate.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
-        }
+        _rigidbody.MovePosition(_rigidbody.position + (transform.forward * (Mathf.Abs(_joystick.Vertical) + Mathf.Abs(_joystick.Horizontal)) * _moveSpeed * Time.fixedDeltaTime));
     }
 }
