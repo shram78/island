@@ -53,12 +53,16 @@ public class ShakeTreeZone : MonoBehaviour
 
         while (true)
         {
+            _progressBar.SetValueInstantly(_spawner._currentTime);
+
             if (_joystick.Direction == Vector2.zero)
             {
-                yield return new WaitForSeconds(0.2f);
-
                 if (!_isPlayerWorking)
+                {
+                    yield return new WaitForSeconds(0.2f);
+
                     StartWorking(lookPoint);
+                }
             }
             else
             {
@@ -98,14 +102,5 @@ public class ShakeTreeZone : MonoBehaviour
         Enter?.Invoke(false);
 
         _progressBar.Hide();
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.TryGetComponent(out Monkey monkey))
-            return;
-
-        else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
-            _progressBar.SetValueInstantly(_spawner._currentTime);
     }
 }

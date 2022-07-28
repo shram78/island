@@ -1980,8 +1980,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _joystick: {fileID: 963722776}
-  _moveSpeed: 7
-  _rotationSpeed: 50
+  _moveSpeed: 5
+  _rotationSpeed: 6
   _rigidbody: {fileID: 274331733}
   _viewToRotate: {fileID: 1611586160}
 --- !u!95 &274331735
@@ -16197,6 +16197,10 @@ PrefabInstance:
       propertyPath: _prefabSpawm
       value: 
       objectReference: {fileID: 1566408510966437618, guid: 33e932e8b400e9948be81292f3327592, type: 3}
+    - target: {fileID: 6676072211925870035, guid: 85591ebfc6b16f545ae17b593a4eea15, type: 3}
+      propertyPath: _timeToMovePrefab
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6676072211925870035, guid: 85591ebfc6b16f545ae17b593a4eea15, type: 3}
       propertyPath: _branchInStocks.Array.size
       value: 20

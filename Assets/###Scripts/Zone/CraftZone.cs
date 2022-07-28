@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,43 +11,19 @@ public class CraftZone : MonoBehaviour
     [SerializeField] private FloatingJoystick _joystick;
 
     private bool _isPlayerWorking = false;
+    private Coroutine _working;
 
     public UnityAction<bool> Enter;
-
-    private void Update()
-    {
-        if (_isPlayerWorking)
-        {
-            if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
-                StoppedWorking();
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out Monkey monkey))
             return;
 
-        else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
-            StartCoroutine(CheckJoistickAndStartAnimations(other));
-    }
-
-    private IEnumerator CheckJoistickAndStartAnimations(Collider other)
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        if (_joystick.Horizontal == 0 || _joystick.Vertical == 0)
+        if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
         {
-            if (other.gameObject.TryGetComponent(out PlayrsBag bag))
-            {
-                _isPlayerWorking = true;
-
-                _playerAnimator.Working();
-
-                Enter?.Invoke(true);
-
-                _progressBar.Show();
-            }
+            if (_working == null)
+                _working = StartCoroutine(CheckJoistickAndStartAnimations(playrsBag));
         }
     }
 
@@ -55,24 +32,64 @@ public class CraftZone : MonoBehaviour
         if (other.gameObject.TryGetComponent(out Monkey monkey))
             return;
 
-        else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
-            StoppedWorking();
+        if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
+        {
+            if (_working != null)
+            {
+                StopCoroutine(_working);
+                _working = null;
+            }
+        }
     }
 
-    private void OnTriggerStay(Collider other)
+    private IEnumerator CheckJoistickAndStartAnimations(PlayrsBag playrsBag)
     {
-        if (other.gameObject.TryGetComponent(out Monkey monkey))
-            return;
+        Vector3 lookPoint = new Vector3(_logSpawner.transform.position.x, playrsBag.transform.position.y, _logSpawner.transform.position.z);
 
-        else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
+        while (true)
+        {
             _progressBar.SetValueInstantly(_logSpawner._currentTime);
+
+            if (_joystick.Direction == Vector2.zero && _logSpawner.IsHavePrefab)
+            {
+                if (!_isPlayerWorking)
+                {
+                    yield return new WaitForSeconds(0.2f);
+
+                    StartWorking(lookPoint, playrsBag);
+                }
+            }
+            else
+            {
+                if (_isPlayerWorking)
+                    StoppedWorking();
+            }
+
+            yield return null;
+        }
+    }
+
+    private void StartWorking(Vector3 lookPoint, PlayrsBag playrsBag)
+    {
+        _isPlayerWorking = true;
+
+        _playerAnimator.Working(_isPlayerWorking);
+
+        playrsBag.transform.DOLookAt(lookPoint, 0.5f, AxisConstraint.Y);
+
+        Enter?.Invoke(_isPlayerWorking);
+
+        _progressBar.Show();
+
     }
 
     private void StoppedWorking()
     {
         _isPlayerWorking = false;
 
-        Enter?.Invoke(false);
+        _playerAnimator.Working(_isPlayerWorking);
+
+        Enter?.Invoke(_isPlayerWorking);
 
         _progressBar.Hide();
     }

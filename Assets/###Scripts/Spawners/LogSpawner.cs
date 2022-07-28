@@ -22,6 +22,7 @@ public class LogSpawner : MonoBehaviour
 
     public float _currentTime { get; private set; }
     public int CurrentCLosedPoint { get; private set; }
+    public bool IsHavePrefab => _numberPrefab > 0;
 
     private void OnEnable()
     {
@@ -35,11 +36,6 @@ public class LogSpawner : MonoBehaviour
     {
         _craftZone.Enter -= SetInzoneStatus;
         _zone.DropPrefabInStock -= ShowBranchnStock;
-    }
-
-    private void SetInzoneStatus(bool isInZone)
-    {
-        _isInZone = isInZone;
     }
 
     private void Update()
@@ -59,6 +55,11 @@ public class LogSpawner : MonoBehaviour
             }
         }
         CurrentCLosedPoint = _spawnPoints.Length - _numberClosedPoints;
+    }
+
+    private void SetInzoneStatus(bool isInZone)
+    {
+        _isInZone = isInZone;
     }
 
     private void SpawnPrefab()

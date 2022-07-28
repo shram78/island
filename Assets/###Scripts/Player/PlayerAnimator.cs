@@ -48,9 +48,9 @@ public class PlayerAnimator : MonoBehaviour
         _animator.SetBool(ShakeTree, isShaking);
     }
 
-    public void Working()
+    public void Working(bool isWorking)
     {
-        _animator.SetTrigger(Work);
+        _animator.SetBool(Work, isWorking);
     }
 
     public void Dance()
