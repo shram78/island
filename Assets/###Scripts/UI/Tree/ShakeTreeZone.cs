@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using DG.Tweening;
 
 public class ShakeTreeZone : MonoBehaviour
 {
@@ -13,17 +14,10 @@ public class ShakeTreeZone : MonoBehaviour
 
     private bool _isPlayerWorking = false;
 
+    private Coroutine _working;
+
 
     public UnityAction<bool> Enter;
-
-    private void Update()
-    {
-        if (_isPlayerWorking)
-        {
-            if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
-                StoppedWorking();
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -31,28 +25,9 @@ public class ShakeTreeZone : MonoBehaviour
             return;
 
         else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
-            StartCoroutine(CheckJoistickAndStartAnimations(other));
-    }
-
-    private IEnumerator CheckJoistickAndStartAnimations(Collider other)
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        if (_joystick.Horizontal == 0 || _joystick.Vertical == 0)
         {
-            if (other.gameObject.TryGetComponent(out PlayrsBag bag))
-            {
-                _isPlayerWorking = true;
-
-                _playerWork.ShowLog();
-
-                _playerAnimator.ShakingTree();
-                _palmAnimator.ShakingTree();
-
-                Enter?.Invoke(true);
-
-                _progressBar.Show();
-            }
+            if (_working == null)
+                StartCoroutine(CheckJoistickAndStartAnimations(playrsBag));
         }
     }
 
@@ -62,9 +37,54 @@ public class ShakeTreeZone : MonoBehaviour
             return;
 
         else if (other.gameObject.TryGetComponent(out PlayrsBag playrsBag))
-            StoppedWorking();
+        {
+            if (_working != null)
+            {
+                StopCoroutine(_working);
+                _working = null;
+            }
+        }
     }
 
+    private IEnumerator CheckJoistickAndStartAnimations(PlayrsBag bag)
+    {
+
+        Vector3 lookPoint = new Vector3(_spawner.transform.position.x, _playerWork.transform.position.y, _spawner.transform.position.z);
+
+        while (true)
+        {
+            if (_joystick.Direction == Vector2.zero)
+            {
+                yield return new WaitForSeconds(0.2f);
+
+                if (!_isPlayerWorking)
+                    StartWorking(lookPoint);
+            }
+            else
+            {
+                if (_isPlayerWorking)
+                    StoppedWorking();
+            }
+
+            yield return null;
+        }
+    }
+
+    private void StartWorking(Vector3 lookPoint)
+    {
+        _isPlayerWorking = true;
+
+        _playerWork.ShowLog();
+
+        _playerAnimator.ShakingTree(_isPlayerWorking);
+        _palmAnimator.ShakingTree();
+
+        Enter?.Invoke(true);
+
+        _progressBar.Show();
+
+        _playerWork.transform.DOLookAt(lookPoint, 0.5f, AxisConstraint.Y);
+    }
 
     private void StoppedWorking()
     {
@@ -72,6 +92,7 @@ public class ShakeTreeZone : MonoBehaviour
 
         _playerWork.HideLog();
 
+        _playerAnimator.ShakingTree(_isPlayerWorking);
         _palmAnimator.StopingShakeTree();
 
         Enter?.Invoke(false);

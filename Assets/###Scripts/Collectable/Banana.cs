@@ -1,12 +1,5 @@
-using System.Collections;
-using UnityEngine;
 
-public class Banana : Branch
+public class Banana : CollectableItem
 {
-    protected override IEnumerator StartTimer()
-    {
-        yield return new WaitForSeconds(0.6f);
 
-        SetRigidbody();
-    }
 }

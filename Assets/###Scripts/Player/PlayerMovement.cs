@@ -8,11 +8,28 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private Transform _viewToRotate;
 
+    private Camera _camera;
+
+    private void Start()
+    {
+        _camera = Camera.main;
+    }
+
     private void FixedUpdate()
     {
-        _rigidbody.velocity = (transform.forward * _joystick.Vertical + _joystick.Horizontal * transform.right) * _moveSpeed;
+        if (_joystick.Direction == Vector2.zero)
+        {
+            _rigidbody.velocity = Vector3.zero;
+            return;
+        }
 
-        Rotate();
+        transform.rotation = Quaternion.LookRotation(new Vector3(_joystick.Direction.x, 0f, _joystick.Direction.y), Vector3.up) * Quaternion.Euler(0, _camera.transform.rotation.eulerAngles.y, 0);
+
+        _rigidbody.MovePosition(_rigidbody.position + (transform.forward * _moveSpeed * Time.fixedDeltaTime));
+
+        //_rigidbody.velocity = (transform.forward * _joystick.Vertical + _joystick.Horizontal * transform.right) * _moveSpeed;
+
+        //Rotate();
     }
 
     private void Rotate()

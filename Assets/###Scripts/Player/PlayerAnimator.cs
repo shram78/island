@@ -22,7 +22,7 @@ public class PlayerAnimator : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
+        if (_joystick.Direction != Vector2.zero)
         {
             if (Math.Abs(_joystick.Horizontal) > Math.Abs(_joystick.Vertical))
                 PlayWalkAnimation(Math.Abs(_joystick.Horizontal));
@@ -43,9 +43,9 @@ public class PlayerAnimator : MonoBehaviour
         _animator.SetFloat(Speed, 0);
     }
 
-    public void ShakingTree()
+    public void ShakingTree(bool isShaking)
     {
-        _animator.SetTrigger(ShakeTree);
+        _animator.SetBool(ShakeTree, isShaking);
     }
 
     public void Working()
