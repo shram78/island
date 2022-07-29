@@ -43,3 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edb3aa2da603fe34daa94ff2b0673175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _appMetricaObject: {fileID: 11400000, guid: c191e4964134b17478ae68b418f5dcf3, type: 2}
+  _gameAnalyticsObject: {fileID: 11400000, guid: ed67c290f86a45742b2f80c8576b3426, type: 2}
