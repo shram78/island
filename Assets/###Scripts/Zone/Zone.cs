@@ -40,12 +40,6 @@ public class Zone : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out PlayrsBag bag))
         {
-            if (_isTrashCan)
-            {
-                bag.TrashBag(_pointToMove, this);
-                return;
-            }
-
             if (_stacking == null)
                 _stacking = StartCoroutine(Stacking(bag));
         }
@@ -76,6 +70,11 @@ public class Zone : MonoBehaviour
             {
                 yield return null;
                 continue;
+            }
+
+            if (_isTrashCan)
+            {
+                bag.TrashBag(_pointToMove, this);
             }
 
             if (bag.IsDropping)

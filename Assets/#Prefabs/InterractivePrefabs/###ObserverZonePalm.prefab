@@ -6225,7 +6225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194677457822465908}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.553, y: -5.82, z: -5.14}
+  m_LocalPosition: {x: -11.553, y: -3, z: -5.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 194677458094509589}
@@ -6247,7 +6247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd84f314122549e45bb331bd44f1e892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collectableItem: {fileID: 3475811273709006592, guid: 2371c1a98f6607247a4614d79e206b20, type: 3}
+  _collectableItem: {fileID: 1222193110249488892, guid: 2371c1a98f6607247a4614d79e206b20, type: 3}
   _spawnPoints:
   - {fileID: 194677458593492581}
   - {fileID: 194677458028934887}
@@ -6262,7 +6262,6 @@ MonoBehaviour:
   _shakeTreeZone: {fileID: 194677458360934807}
   _currentDdelaySpawn: 10
   _delayManualSpawn: 2
-  _spawnPaticle: {fileID: 6685843218156371242}
 --- !u!114 &194677457822465913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6275,16 +6274,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76076cdc45b9d9546a891f52f4cb281b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isBranch: 1
-  _isLog: 0
-  _isBarrel: 0
-  _isBanana: 0
+  _type: 0
+  _isTrashCan: 0
   _pointToMove: {fileID: 194677457822465914}
   _numberBranch: {fileID: 0}
   _countBranch: 0
   _isLogSpawner: 0
   _logSpawner: {fileID: 0}
-  _isThisDropZone: 0
   _joystick: {fileID: 0}
 --- !u!1 &194677457992423782
 GameObject:
@@ -6920,16 +6916,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76076cdc45b9d9546a891f52f4cb281b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isBranch: 0
-  _isLog: 0
-  _isBarrel: 1
-  _isBanana: 0
+  _type: 2
+  _isTrashCan: 0
   _pointToMove: {fileID: 194677458353554224}
   _numberBranch: {fileID: 194677457673881464}
   _countBranch: 5
   _isLogSpawner: 0
   _logSpawner: {fileID: 0}
-  _isThisDropZone: 0
   _joystick: {fileID: 0}
 --- !u!65 &194677458353554230
 BoxCollider:
@@ -17710,7 +17703,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 0.2
     minScalar: 0
     maxCurve:
       serializedVersion: 2
