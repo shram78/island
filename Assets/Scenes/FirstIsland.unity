@@ -1981,7 +1981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _joystick: {fileID: 963722776}
   _moveSpeed: 5
-  _rotationSpeed: 6
+  _rotationSpeed: 15
   _rigidbody: {fileID: 274331733}
   _viewToRotate: {fileID: 1611586160}
 --- !u!95 &274331735
@@ -9489,7 +9489,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1440420383}
-  m_LocalRotation: {x: 0.18107517, y: -0.13559301, z: 0.025214387, w: 0.97375077}
+  m_LocalRotation: {x: 0.18107519, y: -0.13559298, z: 0.025214383, w: 0.97375077}
   m_LocalPosition: {x: -2.559988, y: 8.660999, z: -46.484}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
