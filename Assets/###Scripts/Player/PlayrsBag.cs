@@ -20,6 +20,8 @@ public class PlayrsBag : MonoBehaviour
 
     public bool IsDropping => _isDropping;
 
+    public int CurrentStack => _currentStackSize;
+
     private void Start()
     {
         _collectableItems = new List<CollectableItem>();

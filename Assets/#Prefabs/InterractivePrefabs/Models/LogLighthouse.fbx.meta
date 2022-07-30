@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 47903904fe6b4734591f7db10afc37b9
+guid: 271173858381e8f40ad34b064533d08c
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: CartoonTreesTex.001
-    second: {fileID: 2100000, guid: 9c49c8a46676d8a4d8c58e30061e9401, type: 2}
+    second: {fileID: 2100000, guid: 90e819d0a3a65ab408ecc542da040a7a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
