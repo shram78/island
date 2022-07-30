@@ -10,14 +10,17 @@ public class SecondLevalObserver : MonoBehaviour
     [SerializeField] private GameObject _razerObserver;
     [SerializeField] private Zone _razer;
     [SerializeField] private GameObject _bridgeObserver;
-
-
+    [SerializeField] private GameObject _boat;
+    [SerializeField] private Zone _bridgeZone;
+    [SerializeField] private GameObject _waterObserver;
+    [SerializeField] private GameObject _bananaObserver;
 
     private void OnEnable()
     {
         _firstPalm.Opened += OnOpenedTent;
         _tent.Opened += OnOpenedRazer;
         _razer.Opened += OnOpenedBridge;
+        _bridgeZone.Opened += OnOpenedWater;
 
     }
 
@@ -26,12 +29,16 @@ public class SecondLevalObserver : MonoBehaviour
         _firstPalm.Opened -= OnOpenedTent;
         _tent.Opened -= OnOpenedRazer;
         _razer.Opened -= OnOpenedBridge;
+        _bridgeZone.Opened -= OnOpenedWater;
+
 
     }
 
     private void OnOpenedTent()
     {
         _tentObserved.gameObject.SetActive(true);
+        _boat.gameObject.SetActive(true);
+        _bananaObserver.gameObject.SetActive(true);
     }
 
     private void OnOpenedRazer()
@@ -39,9 +46,14 @@ public class SecondLevalObserver : MonoBehaviour
         _razerObserver.gameObject.SetActive(true);
     }
 
-     private void OnOpenedBridge()
+    private void OnOpenedBridge()
     {
         _bridgeObserver.gameObject.SetActive(true);
+    }
+
+    private void OnOpenedWater()
+    {
+        _waterObserver.gameObject.SetActive(true);
     }
 }
 

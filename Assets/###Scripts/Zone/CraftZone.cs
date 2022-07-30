@@ -6,11 +6,17 @@ using UnityEngine.Events;
 public class CraftZone : MonoBehaviour
 {
     [SerializeField] private PlayerAnimator _playerAnimator;
+    [SerializeField] private PalmAnimator _palmAnimator;
+
     [SerializeField] private ProgressBar _progressBar;
     [SerializeField] private LogSpawner _logSpawner;
     [SerializeField] private FloatingJoystick _joystick;
+    [SerializeField] private bool _isThisBananaCraft = false;
+    [SerializeField] private PlayerWork _playerWork;
+
 
     private bool _isPlayerWorking = false;
+
     private Coroutine _working;
 
     public UnityAction<bool> Enter;
@@ -73,7 +79,14 @@ public class CraftZone : MonoBehaviour
     {
         _isPlayerWorking = true;
 
-        _playerAnimator.Working(_isPlayerWorking);
+        if (_isThisBananaCraft)
+        {
+            _playerWork.ShowLog();
+            _playerAnimator.ShakingTree(_isPlayerWorking);
+            _palmAnimator.ShakingTree();
+        }
+        else
+            _playerAnimator.Working(_isPlayerWorking);
 
         playrsBag.transform.DOLookAt(lookPoint, 0.5f, AxisConstraint.Y);
 
@@ -87,7 +100,14 @@ public class CraftZone : MonoBehaviour
     {
         _isPlayerWorking = false;
 
-        _playerAnimator.Working(_isPlayerWorking);
+        if (_isThisBananaCraft)
+        {
+            _playerWork.HideLog();
+            _playerAnimator.ShakingTree(_isPlayerWorking);
+            _palmAnimator.StopingShakeTree();
+        }
+        else
+            _playerAnimator.Working(_isPlayerWorking);
 
         Enter?.Invoke(_isPlayerWorking);
 
