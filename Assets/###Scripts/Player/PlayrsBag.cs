@@ -191,4 +191,12 @@ public class PlayrsBag : MonoBehaviour
         }
         return false;
     }
+
+    public void StackUp()
+    {
+        _currentStackSize += 5;
+
+        if (_currentStackSize > _stackPoints.Length)
+            _currentStackSize = _stackPoints.Length;
+    }
 }
