@@ -8,16 +8,16 @@ public class ObserverZoneRaft : MonoBehaviour
     [SerializeField] private Zone _zoneBarell;
     [SerializeField] private GameObject _raftRoot;
     [SerializeField] private GameObject _raftAlfa;
-    [SerializeField] private LevelComlete _levelComplete;
+    [SerializeField] protected LevelComlete _levelComplete;
     [SerializeField] private float _heightToUp;
     [SerializeField] private float _timeToUp = 0.5f;
     [SerializeField] private GameObject[] _barrelsInRaft;
 
-    private bool _isBranchOpen = false;
-    private bool _isLogOpen = false;
-    private bool _isBarellOpen = false;
+    protected bool _isBranchOpen = false;
+    protected bool _isLogOpen = false;
+    protected bool _isBarellOpen = false;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         _zoneBranch.Opened += OnSetBranch;
         _zoneLog.Opened += OnSetLog;
@@ -25,7 +25,7 @@ public class ObserverZoneRaft : MonoBehaviour
         _zoneBarell.DropPrefabInStock += ShowBarrelsInRaft;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         _zoneBranch.Opened -= OnSetBranch;
         _zoneLog.Opened -= OnSetLog;
@@ -44,11 +44,13 @@ public class ObserverZoneRaft : MonoBehaviour
         _isBranchOpen = true;
         SpawnRaft();
     }
+
     private void OnSetLog()
     {
         _isLogOpen = true;
         SpawnRaft();
     }
+
     private void OnSetBarell()
     {
         _isBarellOpen = true;
@@ -68,7 +70,7 @@ public class ObserverZoneRaft : MonoBehaviour
         }
     }
 
-    private void Delivery()
+    protected virtual void Delivery()
     {
         if (_isBarellOpen)
             _levelComplete.SetFoodCollected();

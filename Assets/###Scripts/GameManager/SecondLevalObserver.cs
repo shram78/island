@@ -14,6 +14,9 @@ public class SecondLevalObserver : MonoBehaviour
     [SerializeField] private Zone _bridgeZone;
     [SerializeField] private GameObject _waterObserver;
     [SerializeField] private GameObject _bananaObserver;
+    [SerializeField] private GameObject _secondRazerObserver;
+    [SerializeField] private GameObject _secondPalm;
+
 
     private void OnEnable()
     {
@@ -54,6 +57,8 @@ public class SecondLevalObserver : MonoBehaviour
     private void OnOpenedWater()
     {
         _waterObserver.gameObject.SetActive(true);
+        _secondRazerObserver.gameObject.SetActive(true);
+        _secondPalm.gameObject.SetActive(true);
     }
 }
 
