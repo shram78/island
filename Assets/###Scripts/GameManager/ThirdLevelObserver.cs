@@ -18,8 +18,6 @@ public class ThirdLevelObserver : MonoBehaviour
     [SerializeField] private GameObject _secondRazer;
     [SerializeField] private GameObject _secondBananaObserver;
 
-
-
     private void OnEnable()
     {
         _firstPalm.Opened += OnOpenedTent;

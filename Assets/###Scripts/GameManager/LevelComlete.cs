@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using Cinemachine;
 using UnityEngine.Events;
+using System.Collections;
 
 public class LevelComlete : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class LevelComlete : MonoBehaviour
     [SerializeField] private GameObject _sail;
     [SerializeField] private GameObject _UIFood;
     [SerializeField] private GameObject _UILetsGo;
+    [SerializeField] private GameSceneManager _gameSceneManager;
 
     public UnityAction Comleted;
 
@@ -41,7 +43,7 @@ public class LevelComlete : MonoBehaviour
     private void LeaveTheIsland(PlayrsBag playrsBag)
     {
         Comleted?.Invoke();
-        
+
         DisableJoystickMovement();
 
         _UILetsGo.gameObject.SetActive(false);
@@ -51,6 +53,8 @@ public class LevelComlete : MonoBehaviour
         _sail.transform.DOScaleY(1, 10);
         SetNewCamera();
         _animator.Dance();
+
+        StartCoroutine(LoadNextLevelOnTimer());
     }
 
     private void DisableJoystickMovement()
@@ -66,5 +70,12 @@ public class LevelComlete : MonoBehaviour
     {
         _mainCamera.Priority = 0;
         _levelCompleteCamera.Priority = 1;
+    }
+
+    private IEnumerator LoadNextLevelOnTimer()
+    {
+        yield return new WaitForSeconds(10f);
+
+        _gameSceneManager.LoadNextScene();
     }
 }

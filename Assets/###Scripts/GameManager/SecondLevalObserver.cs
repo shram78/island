@@ -15,7 +15,6 @@ public class SecondLevalObserver : MonoBehaviour
     [SerializeField] private GameObject _secondRazerObserver;
     [SerializeField] private GameObject _secondPalm;
 
-
     private void OnEnable()
     {
         _firstPalm.Opened += OnOpenedTent;
