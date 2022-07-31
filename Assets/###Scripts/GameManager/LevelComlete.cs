@@ -1,6 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 using Cinemachine;
+using UnityEngine.Events;
 
 public class LevelComlete : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class LevelComlete : MonoBehaviour
     [SerializeField] private GameObject _UIFood;
     [SerializeField] private GameObject _UILetsGo;
 
+    public UnityAction Comleted;
 
     private bool _isFoofCollected = false;
 
@@ -38,6 +40,8 @@ public class LevelComlete : MonoBehaviour
 
     private void LeaveTheIsland(PlayrsBag playrsBag)
     {
+        Comleted?.Invoke();
+        
         DisableJoystickMovement();
 
         _UILetsGo.gameObject.SetActive(false);

@@ -46,7 +46,7 @@ public class ShipDelivery : MonoBehaviour
 
     private IEnumerator ShowOnTimer(CinemachineVirtualCamera currentCamera)
     {
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(5);
 
         SetMainCamera(currentCamera);
         _joistickHandler.gameObject.SetActive(true);

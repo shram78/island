@@ -11,7 +11,6 @@ public class ThirdLevelObserver : MonoBehaviour
     [SerializeField] private GameObject _waterObserver;
     [SerializeField] private Zone _lightHouse;
     [SerializeField] private GameObject _shipObserver;
-    [SerializeField] private GameObject _bridgeObserver;
     [SerializeField] private GameObject _secondPalmObserver;
     [SerializeField] private GameObject _thirdPalmObserver;
     [SerializeField] private GameObject _fourthPalmObserver;
@@ -51,7 +50,6 @@ public class ThirdLevelObserver : MonoBehaviour
     private void OnShipSpawn()
     {
         _shipObserver.gameObject.SetActive(true);
-        _bridgeObserver.gameObject.SetActive(true);
         _fourthPalmObserver.gameObject.SetActive(true);
         _fifthPalmObserver.gameObject.SetActive(true);
         _secondRazer.gameObject.SetActive(true);
