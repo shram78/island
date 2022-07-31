@@ -16,6 +16,8 @@ public class ThirdLevelObserver : MonoBehaviour
     [SerializeField] private GameObject _fourthPalmObserver;
     [SerializeField] private GameObject _fifthPalmObserver;
     [SerializeField] private GameObject _secondRazer;
+    [SerializeField] private GameObject _secondBananaObserver;
+
 
 
     private void OnEnable()
@@ -53,5 +55,6 @@ public class ThirdLevelObserver : MonoBehaviour
         _fourthPalmObserver.gameObject.SetActive(true);
         _fifthPalmObserver.gameObject.SetActive(true);
         _secondRazer.gameObject.SetActive(true);
+        _secondBananaObserver.gameObject.SetActive(true);
     }
 }

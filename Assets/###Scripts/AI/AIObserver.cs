@@ -5,29 +5,16 @@ using UnityEngine.AI;
 public class AIObserver : MonoBehaviour
 {
     [SerializeField] private GameObject _monkey;
-    [SerializeField] private Zone _razerZone;
     [SerializeField] private float _timeReturnToPatrol = 60f;
     [SerializeField] private NavMeshAgent _navMeshAgent;
     [SerializeField] private float _patrolSpeed;
     [SerializeField] private float _collecetedSpeed;
 
-
-    private void OnEnable()
+    private void Start()
     {
-        _razerZone.Opened += OnOpenedMonkey;
+        SetPatrolAI();
     }
 
-    private void OnDisable()
-    {
-        _razerZone.Opened -= OnOpenedMonkey;
-    }
-
-    private void OnOpenedMonkey()
-    {
-        _monkey.gameObject.SetActive(true);
-
-    }
-    
     public void SetCollectAI()
     {
         _navMeshAgent.speed = _collecetedSpeed;
