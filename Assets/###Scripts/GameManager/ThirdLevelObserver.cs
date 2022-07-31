@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ThirdLevelObserver : MonoBehaviour
@@ -17,12 +18,19 @@ public class ThirdLevelObserver : MonoBehaviour
     [SerializeField] private GameObject _fifthPalmObserver;
     [SerializeField] private GameObject _secondRazer;
     [SerializeField] private GameObject _secondBananaObserver;
+    [SerializeField] private GameObject _joistick;
+
 
     private void OnEnable()
     {
         _firstPalm.Opened += OnOpenedTent;
         _tent.Opened += OnOpenedRazer;
         _lightHouse.Opened += OnShipSpawn;
+    }
+
+      private void Start()
+    {
+        StartCoroutine(SwitchJoistickTimer());
     }
 
     private void OnDisable()
@@ -54,5 +62,11 @@ public class ThirdLevelObserver : MonoBehaviour
         _fifthPalmObserver.gameObject.SetActive(true);
         _secondRazer.gameObject.SetActive(true);
         _secondBananaObserver.gameObject.SetActive(true);
+    }
+
+     private IEnumerator SwitchJoistickTimer()
+    {
+        yield return new WaitForSeconds(2f);
+        _joistick.gameObject.SetActive(true);
     }
 }

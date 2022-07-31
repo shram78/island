@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SecondLevalObserver : MonoBehaviour
@@ -14,6 +15,8 @@ public class SecondLevalObserver : MonoBehaviour
     [SerializeField] private GameObject _bananaObserver;
     [SerializeField] private GameObject _secondRazerObserver;
     [SerializeField] private GameObject _secondPalm;
+    [SerializeField] private GameObject _joistick;
+
 
     private void OnEnable()
     {
@@ -22,6 +25,10 @@ public class SecondLevalObserver : MonoBehaviour
         _razer.Opened += OnOpenedBridge;
         _bridgeZone.Opened += OnOpenedWater;
 
+    }
+     private void Start()
+    {
+        StartCoroutine(SwitchJoistickTimer());
     }
 
     private void OnDisable()
@@ -56,6 +63,12 @@ public class SecondLevalObserver : MonoBehaviour
         _waterObserver.gameObject.SetActive(true);
         _secondRazerObserver.gameObject.SetActive(true);
         _secondPalm.gameObject.SetActive(true);
+    }
+
+       private IEnumerator SwitchJoistickTimer()
+    {
+        yield return new WaitForSeconds(2f);
+        _joistick.gameObject.SetActive(true);
     }
 }
 
