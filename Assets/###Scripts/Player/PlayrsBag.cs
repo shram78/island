@@ -17,6 +17,7 @@ public class PlayrsBag : MonoBehaviour
     private bool _isDropping = false;
 
     private Coroutine _droppingItem;
+    private Coroutine _trashingItem;
 
     public bool IsDropping => _isDropping;
 
@@ -73,7 +74,6 @@ public class PlayrsBag : MonoBehaviour
 
     public void DropItem(int count, Transform pointMove, Zone zone, ItemType type)
     {
-
         if (count > 0)
         {
             if (_isDropping == false)
@@ -100,7 +100,11 @@ public class PlayrsBag : MonoBehaviour
 
     public void TrashBag(Transform pointMove, Zone zone)
     {
-        StartCoroutine(TrashingItem(pointMove, zone));
+        if (_collectableItems.Count > 0)
+        {
+            if (_trashingItem == null)
+                _trashingItem = StartCoroutine(TrashingItem(pointMove, zone));
+        }
     }
 
     private IEnumerator DroppingItem(int count, Transform pointMove, Zone zone, ItemType type)
@@ -135,6 +139,8 @@ public class PlayrsBag : MonoBehaviour
 
             yield return new WaitForSeconds(0.2f);
         }
+
+        _trashingItem = null;
     }
 
     private void RemoveItem(CollectableItem item, Transform pointMove, Zone zone, int index)
