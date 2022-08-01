@@ -64,32 +64,34 @@ public class Zone : MonoBehaviour
 
         while (_currentNumBranch < _maxBranch)
         {
-            yield return new WaitForSeconds(0.5f);
-
-            if (_joystick.Direction != Vector2.zero)
-            {
-                yield return null;
-                continue;
-            }
-
             if (_isTrashCan)
             {
+                if (_joystick.Direction != Vector2.zero)
+                {
+                    yield return null;
+                    continue;
+                }
+
+                yield return new WaitForSeconds(0.5f);
+
                 bag.TrashBag(_pointToMove, this);
             }
-
-            if (bag.IsDropping)
+            else
             {
-                yield return null;
-                continue;
-            }
+                if (bag.IsDropping)
+                {
+                    yield return null;
+                    continue;
+                }
 
-            if (!bag.IsContainItem(_type))
-            {
-                yield return null;
-                continue;
-            }
+                if (!bag.IsContainItem(_type))
+                {
+                    yield return null;
+                    continue;
+                }
 
-            bag.DropItem(_countBranch, _pointToMove, this, _type);
+                bag.DropItem(_countBranch, _pointToMove, this, _type);
+            }
 
             yield return null;
         }
