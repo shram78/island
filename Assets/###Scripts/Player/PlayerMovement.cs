@@ -28,9 +28,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        _targetRotation = Quaternion.LookRotation(_lookDirection, Vector3.up) * Quaternion.Euler(0, _rotateDegrees, 0);
-
-        transform.rotation = Quaternion.Lerp(this.transform.rotation, _targetRotation, _rotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.LookRotation(_lookDirection, Vector3.up) * Quaternion.Euler(0, _rotateDegrees, 0);
 
         _rigidbody.MovePosition(_rigidbody.position + (transform.forward * (Mathf.Abs(_joystick.Vertical) + Mathf.Abs(_joystick.Horizontal)) * _moveSpeed * Time.fixedDeltaTime));
     }
