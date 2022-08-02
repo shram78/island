@@ -15,6 +15,8 @@ public class Zone : MonoBehaviour
     [SerializeField] private bool _isLogSpawner;
     [SerializeField] private LogSpawner _logSpawner;
     [SerializeField] private FloatingJoystick _joystick;
+    [SerializeField] public Transform _pointerPoint;
+
 
     private int _currentNumBranch = 0;
     private int _maxBranch;
@@ -24,8 +26,8 @@ public class Zone : MonoBehaviour
     public UnityAction<int> BarrelsDropToPalm;
     public UnityAction<int> DropPrefabInStock;
 
-
     public int CountPalm => _countBranch;
+    public Transform Pointer => _pointerPoint;
 
     private void Start()
     {

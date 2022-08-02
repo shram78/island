@@ -7916,6 +7916,7 @@ MonoBehaviour:
   _sail: {fileID: 4501611201240245964}
   _UIFood: {fileID: 4283636525540614488}
   _UILetsGo: {fileID: 6628131182947003585}
+  _gameSceneManager: {fileID: 0}
 --- !u!1 &2394818083746352705
 GameObject:
   m_ObjectHideFlags: 0
